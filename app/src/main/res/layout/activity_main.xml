@@ -39,45 +39,12 @@
         android:entries="@array/operacionesbasicas"
         android:layout_height="wrap_content"/>
 
-    <RadioGroup
-        android:id="@+id/optOperacionesBasicas"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/txtnum2"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:id="@+id/optSuma"
-            android:checked="true"
-            android:text="+"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <RadioButton
-            android:id="@+id/optResta"
-            android:text="-"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <RadioButton
-            android:id="@+id/optMultiplicacion"
-            android:text="x"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <RadioButton
-            android:id="@+id/optDivision"
-            android:text="/"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <RadioButton
-            android:id="@+id/optFactorial"
-            android:text="!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RadioGroup>
 
     <TextView
         android:id="@+id/lblRespuesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/optOperacionesBasicas"
+        android:layout_below="@id/btnCalcular"
         android:layout_marginTop="20dp"
         android:text="Respuesta: ?"
         android:textAlignment="center" />
@@ -86,7 +53,7 @@
         android:id="@+id/btnCalcular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblRespuesta"
+        android:layout_below="@+id/cboOperacionesBasicas"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:onClick="calcular"

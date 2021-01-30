@@ -23,29 +23,7 @@ public class MainActivity extends AppCompatActivity {
         double num2 = Double.parseDouble(tempVal.getText().toString());
 
         double respuesta = 1;
-        RadioButton optoperacionesbasicas = findViewById(R.id.optSuma);
-        if(optoperacionesbasicas.isChecked() ){
-            respuesta = num1 + num2;
-        }
-        optoperacionesbasicas = findViewById(R.id.optResta);
-        if(optoperacionesbasicas.isChecked() ){
-            respuesta = num1 - num2;
-        }
-        optoperacionesbasicas = findViewById(R.id.optMultiplicacion);
-        if(optoperacionesbasicas.isChecked() ){
-            respuesta = num1 * num2;
-        }
-        optoperacionesbasicas = findViewById(R.id.optDivision);
-        if(optoperacionesbasicas.isChecked() ){
-            respuesta = num1 / num2;
-        }
-        optoperacionesbasicas = findViewById(R.id.optFactorial);
-        if(optoperacionesbasicas.isChecked() ){
-            for (int i=2; i<=num1; i++){
-                respuesta *=i;
-            }
 
-        }
         Spinner cboopbasicos = findViewById(R.id.cboOperacionesBasicas);
         switch (cboopbasicos.getSelectedItemPosition()){
             case 0:
@@ -60,6 +38,34 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 respuesta = num1 / num2;
                 break;
+            case 4:
+                for (int i=2; i<=num1; i++){
+                    respuesta *=i;
+                }
+                break;
+            case 5:
+                respuesta = ((num1 / num2) * 100);
+                break;
+            case 6:
+                respuesta = Math.pow(num1, num2);
+                break;
+            case 7:
+                Double raiz = Math.pow(num1, 1/num2);
+                respuesta = raiz;
+                break;
+            case 8:
+                respuesta = num1 % num2;
+                break;
+            case 9:
+                if (num1 > num2){
+                    respuesta = num1;
+                }
+                else{
+                    respuesta = num2;
+                }
+                break;
         }
+        tempVal = findViewById(R.id.lblRespuesta);
+        tempVal.setText("respuesta: " + respuesta);
     }
 }
