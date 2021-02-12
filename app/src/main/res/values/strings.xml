@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Conversor de Unidades</string>
->
+    <string-array name="Conversor"
 
 </resources>

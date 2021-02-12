@@ -8,7 +8,7 @@
 
 
     <TabHost
-        android:id="@+id/conversores"
+        android:id="@+id/tbhConversores"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -27,29 +27,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/tabMonedas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_margin="10dp">
 
-                </LinearLayout>
+                    <Spinner
+                        android:id="@+id/cboDe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/tabLongitud"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/tabMasa"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>
