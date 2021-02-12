@@ -1,15 +1,5 @@
 <resources>
-    <string name="app_name">Calculadora1</string>
-    <string-array name="operacionesbasicas">
-        <item>Suma</item>
-        <item>Resta</item>
-        <item>Multiplicacion</item>
-        <item>Division</item>
-        <item>Factorial</item>
-        <item>Porcentaje</item>
-        <item>Exponenciacion</item>
-        <item>Raiz</item>
-        <item>Modulo(resto)</item>
-        <item>Mayor de 2</item>
-    </string-array>
+    <string name="app_name">Conversor de Unidades</string>
+>
+
 </resources>
