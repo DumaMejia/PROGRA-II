@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Conversor de Unidades</string>
-    <string-array name="Conversor"
-
+    <string-array name="conversorMonedas">
+        <item>Dolar</item>
+        <item>Colon SV</item>
+        <item>Quetzal</item>
+        <item>Lempira</item>
+        <item>Cordoba</item>
+        <item>Colon (Costa Rica)</item>
+    </string-array>
+    <string-array name="conversorLongitud">
+        <item>Metro</item>
+        <item>CM</item>
+        <item>Pulgadas</item>
+        <item>Pies</item>
+    </string-array>
 </resources>
