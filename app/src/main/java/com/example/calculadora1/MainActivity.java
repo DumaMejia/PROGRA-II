@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         tbhConversores.addTab(tbhConversores.newTabSpec("Monedas").setContent(R.id.tabMonedas).setIndicator("M"));
         tbhConversores.addTab(tbhConversores.newTabSpec("Longitud").setContent(R.id.tabLongitud).setIndicator("L"));
         tbhConversores.addTab(tbhConversores.newTabSpec("Masa").setContent(R.id.tabMasa).setIndicator("P"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Almacenamiento").setContent(R.id.tabMasa).setIndicator("A"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Tiempo").setContent(R.id.tabMasa).setIndicator("T"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Temperatura").setContent(R.id.tabMasa).setIndicator("°F"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Volumen").setContent(R.id.tabMasa).setIndicator("V"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Area").setContent(R.id.tabMasa).setIndicator("m²"));
+
 
         btnConvertir = findViewById(R.id.btnCalcular);
         btnConvertir.setOnClickListener(new View.OnClickListener() {

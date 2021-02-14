@@ -161,6 +161,34 @@
                     android:orientation="vertical">
 
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/tabTiempo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/tabTemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/tabVol"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/tabArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </RelativeLayout>
 
             </FrameLayout>
         </LinearLayout>
