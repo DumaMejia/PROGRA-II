@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity {
 
                     spnOpcionDe = findViewById(R.id.cboDeTe);
                     spnOpcionA = findViewById(R.id.cboATe);
-                    tempVal = findViewById(R.id.lblRespuestaL);
+                    tempVal = findViewById(R.id.lblRespuestaTe);
 
-                    tempVal.setText("Respuesta: " + miConversor.convertir(5, spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
+                    tempVal.setText("Respuesta: " + miConversor.temperatura(spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
                 }catch (Exception e){
                     tempVal = findViewById(R.id.lblRespuestaTe);
                     tempVal.setText("Por favor ingrese los valores correspondiente");
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     spnOpcionA = findViewById(R.id.cboAV);
                     tempVal = findViewById(R.id.lblRespuestaV);
 
-                    tempVal.setText("Respuesta: " + miConversor.convertir(6, spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
+                    tempVal.setText("Respuesta: " + miConversor.convertir(5, spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
                 }catch (Exception e){
                     tempVal = findViewById(R.id.lblRespuestaV);
                     tempVal.setText("Por favor ingrese los valores correspondiente");
@@ -187,9 +187,9 @@ public class MainActivity extends AppCompatActivity {
 
                     spnOpcionDe = findViewById(R.id.cboDeAr);
                     spnOpcionA = findViewById(R.id.cboAAr);
-                    tempVal = findViewById(R.id.lblRespuestaL);
+                    tempVal = findViewById(R.id.lblRespuestaAr);
 
-                    tempVal.setText("Respuesta: " + miConversor.convertir(7, spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
+                    tempVal.setText("Respuesta: " + miConversor.convertir(6, spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
                 }catch (Exception e){
                     tempVal = findViewById(R.id.lblRespuestaAr);
                     tempVal.setText("Por favor ingrese los valores correspondiente");
@@ -215,4 +215,40 @@ class conversores{
     public double convertir(int opcion, int de, int a, double cantidad){
         return conversor[opcion][a] / conversor[opcion][de] * cantidad;
     }
+    public double temperatura(int de, int a, double cantidad){
+        double respuesta = 0;
+        /*Celsius*/
+        if (de == 0) {
+            if (a == 0) {
+                respuesta = cantidad;
+            } else if (a == 1) {
+                respuesta = (cantidad * 9 / 5) + 32;
+            } else if (a == 2) {
+                respuesta = cantidad + 273.15;
+            }
+        }
+        /*Fahrenheit*/
+        if (de == 1) {
+            if (a == 0) {
+                respuesta = (cantidad - 32) * 5 / 9;
+            } else if (a == 1) {
+                respuesta = cantidad;
+            } else if (a == 2) {
+                respuesta = (cantidad - 32) * 5 / 9 + 273.15;
+            }
+        }
+        /*Kelvin*/
+        if (de == 2) {
+            if (a == 0) {
+                respuesta = cantidad - 273.15;
+            } else if (a == 1) {
+                respuesta = (cantidad - 273.15) * 9 / 5 + 32;
+            } else if (a == 2) {
+                respuesta = cantidad;
+            }
+        }
+
+        return respuesta;
+    }
+
 }
