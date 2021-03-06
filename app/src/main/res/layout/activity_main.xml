@@ -28,56 +28,28 @@
                 android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:id="@+id/tabLongitud"
+                    android:id="@+id/tabAgua"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/lblDeL"
-                        android:text="DE:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <Spinner
-                        android:id="@+id/cboDeL"
-                        android:entries="@array/conversorLongitud"
-                        android:layout_marginLeft="40dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/lblAL"
-                        android:text="A:"
-                        android:layout_below="@id/lblDeL"
-                        android:layout_marginTop="40dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <Spinner
-                        android:id="@+id/cboAL"
-                        android:layout_below="@id/cboDeL"
-                        android:layout_marginTop="40dp"
-                        android:entries="@array/conversorLongitud"
-                        android:layout_marginLeft="40dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
                     <EditText
-                        android:id="@+id/txtCantidadL"
-                        android:layout_below="@id/lblAL"
+                        android:id="@+id/txtCantidadAgua"
                         android:layout_marginTop="40dp"
                         android:hint="Cantidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/lblRespuestaL"
-                        android:layout_below="@id/txtCantidadL"
+                        android:id="@+id/lblRespuestaAgua"
+                        android:layout_below="@id/txtCantidadAgua"
                         android:text="Respuesta: ?"
                         android:layout_marginTop="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <Button
-                        android:id="@+id/btnCalcularL"
-                        android:layout_below="@id/lblRespuestaL"
+                        android:id="@+id/btnCalcularAgua"
+                        android:layout_below="@id/lblRespuestaAgua"
                         android:layout_marginTop="40dp"
                         android:text="Convertir"
                         android:layout_width="match_parent"

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         tbhConversores.setup();
 
         tbhConversores.addTab(tbhConversores.newTabSpec("Monedas").setContent(R.id.tabMonedas).setIndicator("M"));
-        tbhConversores.addTab(tbhConversores.newTabSpec("Longitud").setContent(R.id.tabLongitud).setIndicator("L"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Longitud").setContent(R.id.tabAgua).setIndicator("A"));
 
         btnConvertir = findViewById(R.id.btnCalcular);
         btnConvertir.setOnClickListener(new View.OnClickListener() {
@@ -50,21 +50,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        btnConvertir = findViewById(R.id.btnCalcularL);
+        btnConvertir = findViewById(R.id.btnCalcularAgua);
         btnConvertir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    tempVal = findViewById(R.id.txtCantidadL);
+                    tempVal = findViewById(R.id.txtCantidadAgua);
                     double cantidad = Double.parseDouble(tempVal.getText().toString());
 
-                    spnOpcionDe = findViewById(R.id.cboDeL);
-                    spnOpcionA = findViewById(R.id.cboAL);
-                    tempVal = findViewById(R.id.lblRespuestaL);
+                    tempVal = findViewById(R.id.lblRespuestaAgua);
 
-                    tempVal.setText("Respuesta: " + miConversor.convertir(1, spnOpcionDe.getSelectedItemPosition(), spnOpcionA.getSelectedItemPosition(), cantidad));
+                    tempVal.setText("Respuesta: " + miConversor.convertiragua(cantidad));
                 }catch (Exception e){
-                    tempVal = findViewById(R.id.lblRespuestaL);
+                    tempVal = findViewById(R.id.lblRespuestaAgua);
                     tempVal.setText("Por favor ingrese los valores correspondiente");
                     Toast.makeText(getApplicationContext(), "Por ingrese los valores correspondiente "+ e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
@@ -83,39 +81,22 @@ class conversores{
     public double convertir(int opcion, int de, int a, double cantidad){
         return conversor[opcion][a] / conversor[opcion][de] * cantidad;
     }
-    public double temperatura(int de, int a, double cantidad){
+    public double convertiragua( double cantidad){
         double respuesta = 0;
-        /*Celsius*/
-        if (de == 0) {
-            if (a == 0) {
-                respuesta = cantidad;
-            } else if (a == 1) {
-                respuesta = (cantidad * 9 / 5) + 32;
-            } else if (a == 2) {
-                respuesta = cantidad + 273.15;
-            }
-        }
-        /*Fahrenheit*/
-        if (de == 1) {
-            if (a == 0) {
-                respuesta = (cantidad - 32) * 5 / 9;
-            } else if (a == 1) {
-                respuesta = cantidad;
-            } else if (a == 2) {
-                respuesta = (cantidad - 32) * 5 / 9 + 273.15;
-            }
-        }
-        /*Kelvin*/
-        if (de == 2) {
-            if (a == 0) {
-                respuesta = cantidad - 273.15;
-            } else if (a == 1) {
-                respuesta = (cantidad - 273.15) * 9 / 5 + 32;
-            } else if (a == 2) {
-                respuesta = cantidad;
-            }
-        }
+        double var1 = 0;
+        double var2 = 0;
 
+        if (cantidad <= 18) {
+            respuesta = 6;
+        }
+        if (cantidad > 18 && cantidad <= 28){
+            respuesta = (cantidad - 18) * 0.45 + 6;
+        }
+        if (cantidad > 28){
+            var1 = (cantidad - 28) * 0.65;
+            var2 = (28-18) * 0.45;
+            respuesta = var1 + var2 + 6;
+        }
         return respuesta;
     }
 
