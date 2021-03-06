@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         tbhConversores = findViewById(R.id.tbhConversores);
         tbhConversores.setup();
 
-        tbhConversores.addTab(tbhConversores.newTabSpec("Monedas").setContent(R.id.tabMonedas).setIndicator("M"));
+        tbhConversores.addTab(tbhConversores.newTabSpec("Monedas").setContent(R.id.tabArea).setIndicator("M"));
         tbhConversores.addTab(tbhConversores.newTabSpec("Longitud").setContent(R.id.tabAgua).setIndicator("A"));
 
         btnConvertir = findViewById(R.id.btnCalcular);
@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 class conversores{
     double[][] conversor = {
-            {1.0,8.75,7.77, 24.03,34.8,611.10,1746296.00,0.000021,104.96,0.83},/*Monedas*/
-            {1.0, 100.0,39.37,3.28,0.001,0.000621371,1.09361,1000,1e+6,1e+9},/*Longitud*/
+            { 0.092903, 0.00367, 0.111111,0.00014774656489,0.000013292827545,0.000009290304},
     };
     public double convertir(int opcion, int de, int a, double cantidad){
         return conversor[opcion][a] / conversor[opcion][de] * cantidad;

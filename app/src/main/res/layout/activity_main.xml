@@ -58,7 +58,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/tabMonedas"
+                    android:id="@+id/tabArea"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:entries="@array/conversorMonedas" />
+                        android:entries="@array/conversorArea" />
 
                     <TextView
                         android:id="@+id/lblA"
@@ -92,7 +92,7 @@
                         android:layout_below="@id/cboDe"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="20dp"
-                        android:entries="@array/conversorMonedas" />
+                        android:entries="@array/conversorArea" />
 
                     <EditText
                         android:id="@+id/txtcantidad"
