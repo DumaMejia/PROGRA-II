@@ -1,27 +1,13 @@
 <resources>
     <string name="app_name">Conversor de Unidades</string>
-    <string-array name="conversorMonedas">
-        <item>Dolar</item>
-        <item>Colon SV</item>
-        <item>Quetzal</item>
-        <item>Lempira</item>
-        <item>Cordoba</item>
-        <item>Colon (Costa Rica)</item>
-        <item>Bolivar (Venezuela)</item>
-        <item>Bitcoin</item>
-        <item>Yen</item>
-        <item>Euro</item>
-    </string-array>
-    <string-array name="conversorLongitud">
-        <item>Metro</item>
-        <item>CM</item>
-        <item>Pulgadas</item>
-        <item>Pies</item>
-        <item>Kilometro</item>
-        <item>Milla</item>
-        <item>Yarda</item>
-        <item>Milimetro</item>
-        <item>Micrometro</item>
-        <item>Nanometro</item>
+    <string-array name="conversorArea">
+        <item>Pie Cuadrado</item>
+        <item>Vara Cuadrada</item>
+        <item>Yarda Cuadrada</item>
+        <item>Metro Cuadrado</item>
+        <item>Tareas</item>
+        <item>Manzana</item>
+        <item>Hectárea</item>
+
     </string-array>
 </resources>
