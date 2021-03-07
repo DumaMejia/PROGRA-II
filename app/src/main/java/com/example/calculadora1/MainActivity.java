@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 class conversores{
     double[][] conversor = {
-            { 0.092903, 0.00367, 0.111111,0.00014774656489,0.000013292827545,0.000009290304},
+            {1,0.092903, 0.00367, 0.111111,0.00014774656489,0.000013292827545,0.000009290304},
     };
     public double convertir(int opcion, int de, int a, double cantidad){
         return conversor[opcion][a] / conversor[opcion][de] * cantidad;
