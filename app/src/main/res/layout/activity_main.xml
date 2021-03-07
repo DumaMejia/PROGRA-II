@@ -51,7 +51,7 @@
                         android:id="@+id/btnCalcularAgua"
                         android:layout_below="@id/lblRespuestaAgua"
                         android:layout_marginTop="40dp"
-                        android:text="Convertir"
+                        android:text="Calcular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
