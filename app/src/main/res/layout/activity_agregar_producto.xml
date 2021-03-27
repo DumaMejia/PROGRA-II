@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarAmigos">
+    tools:context=".AgregarProducto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvrPhoto"
@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         app:cardCornerRadius="150dp">
         <ImageButton
-            android:id="@+id/imgFotoAmigo"
+            android:id="@+id/imgFotoProducto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btnGuardarAmigo"
+        android:id="@+id/btnGuardarProducto"
         android:layout_below="@id/txtEmail"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
