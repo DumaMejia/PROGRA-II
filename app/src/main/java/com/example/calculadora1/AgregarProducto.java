@@ -48,51 +48,57 @@ public class AgregarProducto extends AppCompatActivity {
         });
         btn = findViewById(R.id.btnGuardarProducto);
         btn.setOnClickListener(v->{
-            tempVal = findViewById(R.id.txtNombre);
-            String nombre = tempVal.getText().toString();
+            tempVal = findViewById(R.id.txtCodigo);
+            String codigo = tempVal.getText().toString();
 
-            tempVal = findViewById(R.id.txtTelefono);
-            String tel = tempVal.getText().toString();
+            tempVal = findViewById(R.id.txtDescipcion);
+            String descripcion = tempVal.getText().toString();
 
-            tempVal = findViewById(R.id.txtDireccion);
-            String direccion = tempVal.getText().toString();
+            tempVal = findViewById(R.id.txtMarca);
+            String marca = tempVal.getText().toString();
 
-            tempVal = findViewById(R.id.txtEmail);
-            String email = tempVal.getText().toString();
+            tempVal = findViewById(R.id.txtPresentacion);
+            String presentacion = tempVal.getText().toString();
 
-            String[] datos = {idProducto,nombre,tel,direccion,email,urlCompletaImg};
+            tempVal = findViewById(R.id.txtPrecio);
+            String precio = tempVal.getText().toString();
+
+            String[] datos = {idProducto,codigo,descripcion,marca,presentacion,precio,urlCompletaImg};
             miBD.administracion_productos(accion,datos);
             mostrarMsgToast("Registro guardado con exito.");
 
             mostrarVistaPrincipal();
         });
-        mostrarDatosAmigos();
+        mostrarDatosProducto();
     }
 
-    private void mostrarDatosAmigos() {
+    private void mostrarDatosProducto() {
         try{
             Bundle recibirParametros = getIntent().getExtras();
             accion = recibirParametros.getString("accion");
             if(accion.equals("modificar")){
                 String[] datos = recibirParametros.getStringArray("datos");
 
-                idAmigo = datos[0];
+                idProducto = datos[0];
 
-                tempVal = findViewById(R.id.txtNombre);
+                tempVal = findViewById(R.id.txtCodigo);
                 tempVal.setText(datos[1]);
 
-                tempVal = findViewById(R.id.txtTelefono);
+                tempVal = findViewById(R.id.txtDescipcion);
                 tempVal.setText(datos[2]);
 
-                tempVal = findViewById(R.id.txtDireccion);
+                tempVal = findViewById(R.id.txtMarca);
                 tempVal.setText(datos[3]);
 
-                tempVal = findViewById(R.id.txtEmail);
+                tempVal = findViewById(R.id.txtPresentacion);
                 tempVal.setText(datos[4]);
 
-                urlCompletaImg = datos[5];
+                tempVal = findViewById(R.id.txtPrecio);
+                tempVal.setText(datos[5]);
+
+                urlCompletaImg = datos[6];
                 Bitmap bitmap = BitmapFactory.decodeFile((urlCompletaImg));
-                imgFotoAmigo.setImageBitmap(bitmap);
+                imgFotoProducto.setImageBitmap(bitmap);
             }
         }catch (Exception e){
             mostrarMsgToast(e.getMessage());
@@ -105,16 +111,16 @@ public class AgregarProducto extends AppCompatActivity {
     private void tomarFotoAmigo(){
         tomarFotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if( tomarFotoIntent.resolveActivity(getPackageManager())!=null ){
-            File photoAmigo = null;
+            File photoProducto = null;
             try{
-                photoAmigo = crearImagenAmigo();
+                photoProducto = crearImagenProducto();
             }catch (Exception e){
                 mostrarMsgToast(e.getMessage());
             }
-            if( photoAmigo!=null ){
+            if( photoProducto!=null ){
                 try{
-                    Uri uriPhotoAmigo = FileProvider.getUriForFile(AgregarProducto.this, "com.ugb.miprimerproyecto.fileprovider",photoAmigo);
-                    tomarFotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriPhotoAmigo);
+                    Uri uriPhotoProducto = FileProvider.getUriForFile(AgregarProducto.this, "com.example.calculadora1.fileprovider",photoProducto);
+                    tomarFotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriPhotoProducto);
                     startActivityForResult(tomarFotoIntent,1);
                 }catch (Exception e){
                     mostrarMsgToast(e.getMessage());
@@ -130,13 +136,13 @@ public class AgregarProducto extends AppCompatActivity {
         try{
             if( requestCode==1 && resultCode==RESULT_OK ){
                 Bitmap imagenBitmap = BitmapFactory.decodeFile(urlCompletaImg);
-                imgFotoAmigo.setImageBitmap(imagenBitmap);
+                imgFotoProducto.setImageBitmap(imagenBitmap);
             }
         }catch (Exception e){
             mostrarMsgToast(e.getMessage());
         }
     }
-    private File crearImagenAmigo() throws Exception {
+    private File crearImagenProducto() throws Exception {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String nombreImagen = "imagen_"+ timeStamp +"_";
         File dirAlmacenamiento = getExternalFilesDir(Environment.DIRECTORY_DCIM);

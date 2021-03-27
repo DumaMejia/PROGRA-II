@@ -21,40 +21,47 @@
     </androidx.cardview.widget.CardView>
 
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtCodigo"
         android:layout_below="@id/cvrPhoto"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"/>
+        android:hint="Codigo"/>
     <EditText
-        android:id="@+id/txtTelefono"
-        android:layout_below="@id/txtNombre"
+        android:id="@+id/txtDescipcion"
+        android:layout_below="@id/txtCodigo"
         android:layout_margin="10dp"
-        android:hint="Telefono"
+        android:hint="Descrpcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/txtDireccion"
-        android:layout_below="@id/txtTelefono"
+        android:id="@+id/txtMarca"
+        android:layout_below="@id/txtDescipcion"
         android:layout_margin="10dp"
-        android:hint="Direccion fisica donde vives"
+        android:hint="Marca del producto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/txtEmail"
-        android:layout_below="@id/txtDireccion"
+        android:id="@+id/txtPresentacion"
+        android:layout_below="@id/txtMarca"
         android:layout_margin="10dp"
-        android:hint="Email"
+        android:hint="Presentacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/txtPrecio"
+        android:layout_below="@id/txtPresentacion"
+        android:layout_margin="10dp"
+        android:hint="Marca del producto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btnGuardarProducto"
-        android:layout_below="@id/txtEmail"
+        android:layout_below="@id/txtPrecio"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar amigo"/>
+        android:text="Agregar amigo"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAtras"

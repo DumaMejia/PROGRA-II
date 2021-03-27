@@ -22,27 +22,27 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
-        android:text="Juan Perez"
-        android:textColor="@color/white"
+        android:text="Marca"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/lblTelefono"
+        android:id="@+id/lblpresentacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lblemail"
+        android:layout_below="@id/lblprecio"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="5dp"
         android:text="2626-2222"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/lblemail"
+        android:id="@+id/lblprecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lblTitulo"
         android:layout_marginLeft="80dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp" />
 </RelativeLayout>
