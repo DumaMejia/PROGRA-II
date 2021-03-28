@@ -51,6 +51,12 @@ public class adaptadorImagenes extends BaseAdapter {
             tempVal = itemView.findViewById(R.id.lblprecio);
             tempVal.setText(Invproductos.getPrecio());
 
+            tempVal = itemView.findViewById(R.id.lbldescripcion);
+            tempVal.setText(Invproductos.getDescripcion());
+
+            tempVal = itemView.findViewById(R.id.lblcodigo);
+            tempVal.setText(Invproductos.getCodigo());
+
             Bitmap imagenBitmap = BitmapFactory.decodeFile(Invproductos.getUrlImg());
             imgViewView.setImageBitmap(imagenBitmap);
 
