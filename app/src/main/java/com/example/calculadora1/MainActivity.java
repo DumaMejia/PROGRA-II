@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo)menuInfo;
         datosProductosCursor.moveToPosition(adapterContextMenuInfo.position);
-        menu.setHeaderTitle(datosProductosCursor.getString(1));
+        menu.setHeaderTitle(datosProductosCursor.getString(2));
     }
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
