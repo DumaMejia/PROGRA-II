@@ -52,7 +52,7 @@
         android:id="@+id/txtPrecio"
         android:layout_below="@id/txtPresentacion"
         android:layout_margin="10dp"
-        android:hint="Marca del producto"
+        android:hint="Precio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
@@ -61,7 +61,7 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar amigo"/>
+        android:text="Agregar Producto"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAtras"
