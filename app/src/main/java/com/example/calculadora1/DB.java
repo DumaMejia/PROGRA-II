@@ -45,7 +45,7 @@ public class DB extends SQLiteOpenHelper {
             }
             return datosCursor;
         }catch (Exception e){
-            Toast.makeText(miContext, "Error en la administracion de la BD "+ e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(miContext, "Error en la BD "+ e.getMessage(), Toast.LENGTH_LONG).show();
             return null;
         }
     }

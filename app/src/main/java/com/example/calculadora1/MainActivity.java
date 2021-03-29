@@ -90,17 +90,17 @@ public class MainActivity extends AppCompatActivity {
     private void eliminarProducto(){
         try {
             AlertDialog.Builder confirmacion = new AlertDialog.Builder(MainActivity.this);
-            confirmacion.setTitle("Esta seguro de eliminar el registro?");
+            confirmacion.setTitle("Esta seguro de eliminar el Producto?");
             confirmacion.setMessage(datosProductosCursor.getString(1));
             confirmacion.setPositiveButton("Si", (dialog, which) -> {
                 miBD = new DB(getApplicationContext(), "", null, 1);
                 datosProductosCursor = miBD.administracion_productos("eliminar", new String[]{datosProductosCursor.getString(0)});
                 obtenerDatosProducto();
-                mostrarMsgToask("Registro Eliminado con exito...");
+                mostrarMsgToask("Producto Eliminado con exito");
                 dialog.dismiss();//cerrar el cuadro de dialogo
             });
             confirmacion.setNegativeButton("No", (dialog, which) -> {
-                mostrarMsgToask("Eliminacion cancelada por el usuario...");
+                mostrarMsgToask("Eliminacion cancelada");
                 dialog.dismiss();
             });
             confirmacion.create().show();
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                             String presentacion = am.getPresentacion();
                             String marca = am.getMarca();
 
-                            String buscando = tempVal.getText().toString().trim().toLowerCase();//escribe en la caja de texto...
+                            String buscando = tempVal.getText().toString().trim().toLowerCase();
 
                             if(marca.toLowerCase().trim().contains(buscando) ||
                                     presentacion.trim().contains(buscando) ||
