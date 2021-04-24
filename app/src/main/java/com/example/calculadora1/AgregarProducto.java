@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,10 +29,12 @@ public class AgregarProducto extends AppCompatActivity {
     FloatingActionButton btnAtras;
     ImageView imgFotoProducto;
     Intent tomarFotoIntent;
-    String urlCompletaImg, idProducto,accion="nuevo";
+    String urlCompletaImg, idProducto, rev,accion="nuevo";
     Button btn;
     DB miBD;
     TextView tempVal;
+    utilidades miUrl;
+    detectarInternet di;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,40 +67,63 @@ public class AgregarProducto extends AppCompatActivity {
             tempVal = findViewById(R.id.txtPrecio);
             String precio = tempVal.getText().toString();
 
-            String[] datos = {idProducto,codigo,descripcion,marca,presentacion,precio,urlCompletaImg};
-            miBD.administracion_productos(accion,datos);
+            JSONObject datosProducto = new JSONObject();
+            if(accion.equals("modificar") && idProducto.length()>0 && rev.length()>0 ){
+                datosProducto.put("_id",idProducto);
+                datosProducto.put("_rev",rev);
+            }
+            datosProducto.put("codigo",codigo);
+            datosProducto.put("descripcion",descripcion);
+            datosProducto.put("marca",marca);
+            datosProducto.put("presentacion",presentacion);
+            datosProducto.put("precio",precio);
+            datosProducto.put("urlPhoto",urlCompletaImg);
+            String[] datos = {idProducto, codigo, descripcion, marca, presentacion, precio, urlCompletaImg};
+
+            di = new detectarInternet(getApplicationContext());
+            if (di.hayConexionInternet()) {
+                enviarDatosProductos objGuardarAmigo = new enviarDatosProductos(getApplicationContext());
+                String resp = objGuardarAmigo.execute(datosProducto.toString()).get();
+            }
+            miBD.administracion_productos(accion, datos);
             mostrarMsgToast("Registro guardado con exito.");
 
             mostrarVistaPrincipal();
+        }catch (Exception e){
+            mostrarMsgToast(e.getMessage());
+        }
+
         });
         mostrarDatosProducto();
     }
 
     private void mostrarDatosProducto() {
+
         try{
             Bundle recibirParametros = getIntent().getExtras();
             accion = recibirParametros.getString("accion");
             if(accion.equals("modificar")){
-                String[] datos = recibirParametros.getStringArray("datos");
+                JSONObject datos = new JSONObject(recibirParametros.getString("datos")).getJSONObject("value");
 
-                idProducto = datos[0];
+                idProducto = datos.getString("_id");
+                rev = datos.getString("_rev");
 
                 tempVal = findViewById(R.id.txtCodigo);
-                tempVal.setText(datos[1]);
+                tempVal.setText(datos.getString("codigo"));
 
                 tempVal = findViewById(R.id.txtDescipcion);
-                tempVal.setText(datos[2]);
+                tempVal.setText(datos.getString("descripcion"));
 
                 tempVal = findViewById(R.id.txtMarca);
-                tempVal.setText(datos[3]);
+                tempVal.setText(datos.getString("marca"));
 
                 tempVal = findViewById(R.id.txtPresentacion);
-                tempVal.setText(datos[4]);
+                tempVal.setText(datos.getString("presentacion"));
 
                 tempVal = findViewById(R.id.txtPrecio);
-                tempVal.setText(datos[5]);
+                tempVal.setText(datos.getString("precio"));
 
-                urlCompletaImg = datos[6];
+                urlCompletaImg = datos.getString("urlPhoto");
                 Bitmap bitmap = BitmapFactory.decodeFile((urlCompletaImg));
                 imgFotoProducto.setImageBitmap(bitmap);
             }
