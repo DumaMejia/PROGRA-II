@@ -1,12 +1,14 @@
 package com.example.calculadora1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         di = new detectarInternet(getApplicationContext());
         btn = findViewById(R.id.btnAgregarProducto);
         btn.setOnClickListener(v->{
-            agregarProducto("nuevo", new String[]{});
+            agregarProducto("nuevo");
         });
         obtenerDatosProducto();
         buscarProducto();
@@ -81,12 +83,13 @@ public class MainActivity extends AppCompatActivity {
             mostrarMsgToask(e.getMessage());
         }
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         try {
             switch (item.getItemId()) {
                 case R.id.mnxAgregar:
-                    agregarProducto("nuevo", new String[]{});
+                    agregarProducto("nuevo");
                     break;
                 case R.id.mnxModificar:
                     agregarProducto( "modificar");
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void eliminarProducto(){
         try {
             jsonObjectDatosProductos = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value");
@@ -325,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
 
 class Productos{
     String idProducto;
-    String _rev;
+    String rev;
     String codigo;
     String descripcion;
     String marca;
@@ -333,9 +337,9 @@ class Productos{
     String precio;
     String urlImg;
 
-    public Productos(String idProducto, String _rev, String codigo, String descripcion, String marca, String presentacion, String precio, String urlImg) {
+    public Productos(String idProducto, String rev, String codigo, String descripcion, String marca, String presentacion, String precio, String urlImg) {
         this.idProducto = idProducto;
-        this._rev = _rev;
+        this.rev = rev;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.marca = marca;

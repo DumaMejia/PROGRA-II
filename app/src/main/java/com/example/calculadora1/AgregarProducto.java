@@ -52,6 +52,7 @@ public class AgregarProducto extends AppCompatActivity {
         });
         btn = findViewById(R.id.btnGuardarProducto);
         btn.setOnClickListener(v->{
+            try {
             tempVal = findViewById(R.id.txtCodigo);
             String codigo = tempVal.getText().toString();
 
