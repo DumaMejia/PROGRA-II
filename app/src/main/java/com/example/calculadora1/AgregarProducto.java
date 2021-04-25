@@ -83,8 +83,8 @@ public class AgregarProducto extends AppCompatActivity {
 
             di = new detectarInternet(getApplicationContext());
             if (di.hayConexionInternet()) {
-                enviarDatosProductos objGuardarAmigo = new enviarDatosProductos(getApplicationContext());
-                String resp = objGuardarAmigo.execute(datosProducto.toString()).get();
+                enviarDatosProductos objGuardarProducto = new enviarDatosProductos(getApplicationContext());
+                String resp = objGuardarProducto.execute(datosProducto.toString()).get();
             }
             miBD.administracion_productos(accion, datos);
             mostrarMsgToast("Registro guardado con exito.");

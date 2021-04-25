@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 for(int i=0; i<jsonArrayDatosProductos.length(); i++){
                     jsonObject=jsonArrayDatosProductos.getJSONObject(i).getJSONObject("value");
                     Invproductos = new Productos(
-                            jsonObject.getString("idProducto"),
+                            jsonObject.getString("_id"),
                             jsonObject.getString("_rev"),
                             jsonObject.getString("codigo"),
                             jsonObject.getString("descripcion"),
