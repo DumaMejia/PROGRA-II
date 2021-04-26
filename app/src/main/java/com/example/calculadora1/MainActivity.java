@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     detectarInternet di;
     int position = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }//avance de jose roberto
     private void agregarProducto(String accion){
         try {
             Bundle parametrosProductos = new Bundle();
