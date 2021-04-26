@@ -1,14 +1,13 @@
 package com.example.calculadora1;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,9 +17,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -82,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             mostrarMsgToask(e.getMessage());
         }
+
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         try {
@@ -103,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void eliminarProducto(){
         try {
             jsonObjectDatosProductos = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value");
