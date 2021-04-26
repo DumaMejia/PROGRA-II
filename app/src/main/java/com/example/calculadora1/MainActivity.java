@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) menuInfo;
             position = adapterContextMenuInfo.position;
 
-            menu.setHeaderTitle(jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value").getString("descripcion"));
+            menu.setHeaderTitle(jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value").getString("marca"));
         }catch (Exception e){
             mostrarMsgToask(e.getMessage());
         }
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             jsonObjectDatosProductos = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value");
             AlertDialog.Builder confirmacion = new AlertDialog.Builder(MainActivity.this);
             confirmacion.setTitle("¿Esta seguro de eliminar el producto?");
-            confirmacion.setMessage(jsonObjectDatosProductos.getString("descripcion"));
+            confirmacion.setMessage(jsonObjectDatosProductos.getString("marca"));
             confirmacion.setPositiveButton("Si", (dialog, which) -> {
                 try {
                     if(di.hayConexionInternet()){
