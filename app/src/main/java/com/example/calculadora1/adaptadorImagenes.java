@@ -1,8 +1,7 @@
 package com.example.calculadora1;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,55 +12,52 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class adaptadorImagenes extends BaseAdapter {
-    Context context;
-    ArrayList<Productos> datosProductosArrayList;
-    LayoutInflater layoutInflater;
-    Productos Invproductos;
 
-    public adaptadorImagenes(Context context, ArrayList<Productos> datosProductosArrayList) {
+
+    Context context;
+    ArrayList<peliculas> datospelisArrayList;
+    LayoutInflater layoutInflater;
+    peliculas misPeliculas;
+
+    public adaptadorImagenes(Context context, ArrayList<peliculas> datospelisArrayList) {
         this.context = context;
-        this.datosProductosArrayList = datosProductosArrayList;
+        this.datospelisArrayList = datospelisArrayList;
     }
 
     @Override
     public int getCount() {
-        return datosProductosArrayList.size();
+        return datospelisArrayList.size();
     }
     @Override
     public Object getItem(int position) {
-        return datosProductosArrayList.get(position);
+        return datospelisArrayList.get(position);
     }
     @Override
     public long getItemId(int position) {
-        return Long.parseLong( datosProductosArrayList.get(position).getIdProducto() );
+        return 0;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         layoutInflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View itemView = layoutInflater.inflate(R.layout.listview_imagenes, parent, false);
-        TextView tempVal = itemView.findViewById(R.id.lblTitulo);
-        ImageView imgViewView = itemView.findViewById(R.id.imgPhoto);
+        View encuadre = layoutInflater.inflate(R.layout.listview_imagenes, parent, false);
+        TextView temp = encuadre.findViewById(R.id.lbltitulo);
+        ImageView img = encuadre.findViewById(R.id.miniatura);
         try{
-            Invproductos = datosProductosArrayList.get(position);
-            tempVal.setText(Invproductos.getMarca());
+            misPeliculas = datospelisArrayList.get(position);
+            temp.setText(misPeliculas.getTitulo());
 
-            tempVal = itemView.findViewById(R.id.lblpresentacion);
-            tempVal.setText(Invproductos.getPresentacion());
+            temp = encuadre.findViewById(R.id.lblprecio);
+            temp.setText("$"+misPeliculas.getPrecio());
 
-            tempVal = itemView.findViewById(R.id.lblprecio);
-            tempVal.setText(Invproductos.getPrecio());
+          String urldefoto = misPeliculas.getUrlfoto();
 
-            tempVal = itemView.findViewById(R.id.lbldescripcion);
-            tempVal.setText(Invproductos.getDescripcion());
 
-            tempVal = itemView.findViewById(R.id.lblcodigo);
-            tempVal.setText(Invproductos.getCodigo());
-
-            Bitmap imagenBitmap = BitmapFactory.decodeFile(Invproductos.getUrlImg());
-            imgViewView.setImageBitmap(imagenBitmap);
+         img.setImageURI(Uri.parse(urldefoto));
 
         }catch (Exception e){
         }
-        return itemView;
+        return encuadre;
     }
 }
+
