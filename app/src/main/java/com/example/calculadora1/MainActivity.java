@@ -35,6 +35,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Roberto Carlos Hernandez Melendez USIS016520
+    //Duma Roberto Zelaya Mejia USIS007420
+    //Jose Roberto Del Rio Maravilla USIS015220
+
 
     FloatingActionButton btnadd;
     DB miconexion;
