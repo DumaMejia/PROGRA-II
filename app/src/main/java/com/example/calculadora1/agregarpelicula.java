@@ -31,6 +31,11 @@ import org.json.JSONObject;
 
 public class agregarpelicula extends AppCompatActivity {
 
+
+    //Roberto carlos hernandez melendez USIS016520
+    //Duma Roberto Zelaya Mejia USIS007420
+    //Jose Roberto Del Rio Maravilla USIS015220
+
     FloatingActionButton btnregresar;
     ImageView imgpeli;
     VideoView vdipeli;
