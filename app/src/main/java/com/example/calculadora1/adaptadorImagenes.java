@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 public class adaptadorImagenes extends BaseAdapter {
 
+    //Roberto Carlos Hernandez Melendez USIS016520
+    //Duma Roberto Zelaya Mejia USIS007420
+    //Jose Roberto Del Rio Maravilla USIS015220
 
     Context context;
     ArrayList<peliculas> datospelisArrayList;
