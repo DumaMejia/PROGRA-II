@@ -16,24 +16,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <ImageButton
                 android:id="@+id/imgfotopelicula"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="20dp" />
-
-
-            <VideoView
-                android:id="@+id/vdipelicula"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:background="@drawable/img_redondo"
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/txtTitul"
@@ -84,7 +74,7 @@
                 android:layout_below="@id/txtsinopsis"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:hint="Minutos" />
+                android:hint="duracion" />
 
             <TextView
                 android:id="@+id/txtduracion"
@@ -114,6 +104,25 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:hint="Precio" />
+            <TextView
+                android:id="@+id/txttrailer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_below="@id/txtpreci"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:layout_centerHorizontal="true"
+                android:hint="Trailer de la pelicula" />
+
+            <VideoView
+                android:id="@+id/vdipelicula"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_below="@id/txtpreci"
+                android:layout_marginBottom="100dp" />
 
 
         </LinearLayout>

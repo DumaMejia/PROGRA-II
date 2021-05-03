@@ -34,7 +34,7 @@ public class agregarpelicula extends AppCompatActivity {
     FloatingActionButton btnregresar;
     ImageView imgpeli;
     VideoView vdipeli;
-    String urlfoto, urlvideo,idpeli,idlocal, accion = "nuevo", rev, urivideo;
+    String urlfoto, urlvideo,idpeli,idlocal, accion = "nuevo", rev;
     Button btnagregar, btncargarvideo;
     DB miconexion;
     TextView temp;

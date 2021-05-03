@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     String idlocal;
     detectarInternet di;
     int position = 0;
+    int prueba = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             Agregar("nuevo");
         });
         obtenerDatos();
-        //  Buscar();
+        buscarPelicula();
     }
 
     @Override
@@ -192,6 +196,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void buscarPelicula() {
+        TextView tempVal = findViewById(R.id.txtbuscar);
+        tempVal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    peliculasArrayList.clear();
+                    if (tempVal.getText().toString().length()<1){
+                        peliculasArrayList.addAll(peliculasArrayListCopy);
+                    } else{//si esta buescando biuscar los datos
+                        for (peliculas B : peliculasArrayListCopy){
+                            String titulo = B.getTitulo();
+                            String sinopsis = B.getSinopsis();
+
+                            String buscando = tempVal.getText().toString().trim().toLowerCase();
+                            if(titulo.toLowerCase().contains(buscando) ||
+                                    sinopsis.toLowerCase().contains(buscando)
+                            ){
+                                peliculasArrayList.add(B);
+                            }
+                        }
+                    }
+                    adaptadorImagenes adaptadorImagenes = new adaptadorImagenes(getApplicationContext(), peliculasArrayList);
+                    ltspeliculas.setAdapter(adaptadorImagenes);
+                }catch (Exception e){
+                    mensajes(e.getMessage());
+                }
+
+
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
     private void Modificar(String accion){
         Bundle parametros = new Bundle();
         parametros.putString("accion", accion);
@@ -253,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             mensajes(e.getMessage());
         }
+
     }
 
     private void obtenerDatosOnLine(){
@@ -272,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
             mensajes("Mostrando datos desde la nube");
             obtenerDatosOnLine();
             obtenerDatosOffLine();
+
         } else {
             mensajes("Mostrando datos locales");
             obtenerDatosOffLine();
@@ -280,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void mostrarDatos(){
         try{
-            ltspeliculas = findViewById(R.id.listpelis);
+            ltspeliculas = findViewById(R.id.listpeliculas);
             peliculasArrayList.clear();
             peliculasArrayListCopy.clear();
             JSONObject jsonObject;
