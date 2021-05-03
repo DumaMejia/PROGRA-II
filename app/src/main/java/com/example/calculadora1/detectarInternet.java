@@ -5,10 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class detectarInternet {
-    //  Brian Nelson Centeno Alvarado     USIS019817
-    //  Herson Geovanni López Campos      USIS031120
-    //  José Daniel Mejia Jovel           USIS010420
-    //  William Alexander Amaya García    USIS032120
+
     private Context context;
 
     public detectarInternet(Context context) {
