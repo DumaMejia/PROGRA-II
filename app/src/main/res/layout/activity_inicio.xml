@@ -12,7 +12,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:text="Iniciar" />
+        android:text="OPCION 1" />
 
     <Button
         android:id="@+id/btn2"
@@ -23,5 +23,5 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:text="Registro" />
+        android:text="OPCION 2" />
 </RelativeLayout>

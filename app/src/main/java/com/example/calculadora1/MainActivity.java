@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 }while (datosusuariocursor.moveToNext());
                 if (a>0){
                     mensajes("bienvenido");
-                    Intent i = new Intent(MainActivity.this, MenuInicio.class);
+                    Intent i = new Intent(getApplicationContext(), MenuInicio.class);
+                    startActivity(i);
                 }else {
                     mensajes("No se encontro el usuario");
                 }
