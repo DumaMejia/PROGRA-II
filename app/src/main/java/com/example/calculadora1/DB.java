@@ -12,39 +12,39 @@ public class DB extends SQLiteOpenHelper {
     //Duma Roberto Zelaya Mejia USIS007420
     //Jose Roberto Del Rio Maravilla USIS015220
 
-    static String nombre_bd = "DB_Pelis";
-    static String tblpeli = "CREATE TABLE tblpeli(idpeli integer primary key autoincrement, titulo text, sipnosis text, duracion text, precio text, urlfoto text, urlvideo text)";
+    static String nombre_bd = "DB_usuario";
+    static String tblusuario = "CREATE TABLE tblusuario(idusu integer primary key autoincrement, nombres text, apellidos text, usuario text, contra text)";
     public DB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, nombre_bd, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(tblpeli);
+        db.execSQL(tblusuario);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public Cursor administracion_de_pelis(String accion, String[] datos){
+    public Cursor administracion_usuarios(String accion, String[] datos){
         Cursor datocursor = null;
         SQLiteDatabase sqLiteDatabaseW = getWritableDatabase();
         SQLiteDatabase sqLiteDatabaseR = getReadableDatabase();
 
         switch (accion){
             case "consultar":
-                datocursor = sqLiteDatabaseR.rawQuery("select * from tblpeli",null);
+                datocursor = sqLiteDatabaseR.rawQuery("select * from tblusuario",null);
                 break;
 
             case "nuevo":
-                sqLiteDatabaseW.execSQL("INSERT INTO tblpeli(titulo, sipnosis, duracion, precio, urlfoto, urlvideo) VALUES ('"+datos[1]+"','"+datos[2]+"','"+datos[3]+"','"+datos[4]+"','"+datos[5]+"','"+datos[6]+"')");
+                sqLiteDatabaseW.execSQL("INSERT INTO tblusuario(nombres, apellidos, usuario, contra) VALUES ('"+datos[1]+"','"+datos[2]+"','"+datos[3]+"','"+datos[4]+"')");
                 break;
             case "modificar":
-                sqLiteDatabaseW.execSQL("update tblpeli set titulo='"+datos[1]+"',sipnosis='"+datos[2]+"',duracion='"+datos[3]+"',precio='"+datos[4]+"',urlfoto='"+datos[5]+"',urlvideo='"+datos[6]+"' where idpeli='"+datos[0]+"'");
+                sqLiteDatabaseW.execSQL("update tblusuario set nombres='"+datos[1]+"',apellidos='"+datos[2]+"',usuario='"+datos[3]+"',contra='"+datos[4]+"' where idusu='"+datos[0]+"'");
                 break;
             case "eliminar":
-                sqLiteDatabaseW.execSQL("DELETE FROM tblpeli WHERE idpeli='"+ datos[0]+"'");
+                sqLiteDatabaseW.execSQL("DELETE FROM tblusuario WHERE idusu='"+ datos[0]+"'");
                 break;
         }
 
@@ -58,7 +58,7 @@ public class DB extends SQLiteOpenHelper {
         switch (accion){
 
             case "eliminar":
-                sqLiteDatabaseW.execSQL("DELETE FROM tblpeli WHERE idpeli='"+ idd+"'");
+                sqLiteDatabaseW.execSQL("DELETE FROM tblusuario WHERE idusu='"+ idd+"'");
                 break;
         }
 

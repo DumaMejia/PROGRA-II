@@ -20,8 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculadora1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ver"></activity>
-        <activity android:name=".agregarpelicula" />
+        <activity android:name=".Login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
