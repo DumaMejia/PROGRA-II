@@ -51,24 +51,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logi() {
+
         try {
+            int a = 0;
+
+
             temp = findViewById(R.id.txtuss);
-            String usuario = temp.getText().toString();
+            String usuario = temp.getText().toString().trim();
 
             temp = findViewById(R.id.txtcontra);
-            String contra = temp.getText().toString();
+            String contra = temp.getText().toString().trim();
 
             miconexion = new DB(getApplicationContext(), "", null, 1);
-            datosusuariocursor = miconexion.consultar_usuario("consultar", usuario, contra);
-            if( datosusuariocursor.moveToFirst() ) {
+            datosusuariocursor = miconexion.consultar_usuario("consultar");
 
-                String nombre = datosusuariocursor.getString(1);
-
-                mensajes("Bienvenido " + nombre);
-                Intent i = new Intent(MainActivity.this, AgregarProducto.class);
+            if (datosusuariocursor.moveToFirst()){
+                do {
+                    if (datosusuariocursor.getString(3).equals(usuario)){
+                        if (datosusuariocursor.getString(4).equals(contra)){
+                            a++;
+                        }
+                    }
+                }while (datosusuariocursor.moveToNext());
+                if (a>0){
+                    mensajes("bienvenido");
+                    Intent i = new Intent(MainActivity.this, MenuInicio.class);
+                }else {
+                    mensajes("No se encontro el usuario");
+                }
             }
+
         }catch (Exception e){
-            mensajes("No se encontro el usuario");
+            mensajes(e.getMessage());
         }
     }
 

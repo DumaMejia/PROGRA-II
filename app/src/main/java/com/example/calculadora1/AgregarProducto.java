@@ -52,18 +52,18 @@ public class AgregarProducto extends AppCompatActivity {
     private void agregar() {
         try {
             temp = findViewById(R.id.txtnombres);
-            String nombre = temp.getText().toString();
+            String nombres = temp.getText().toString().trim();
 
             temp = findViewById(R.id.txtapellidos);
-            String apellidos = temp.getText().toString();
+            String apellidos = temp.getText().toString().trim();
 
             temp = findViewById(R.id.txtusuario);
-            String usuario = temp.getText().toString();
+            String usuario = temp.getText().toString().trim();
 
             temp = findViewById(R.id.txtcontra);
-            String pass = temp.getText().toString();
+            String contra = temp.getText().toString().trim();
 
-            String[] datos = {nombre, apellidos, usuario, pass};
+            String[] datos = {nombres, apellidos, usuario, contra};
             miconexion.agregar_usuario(accion, datos);
 
             mensajes("Registro guardado con exito.");

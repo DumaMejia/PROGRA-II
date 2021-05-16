@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculadora1">
         <activity android:name=".AgregarProducto"></activity>
+        <activity android:name=".MenuInicio"/>
         <activity android:name=".MainActivity">
+
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

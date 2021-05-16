@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 public class DB extends SQLiteOpenHelper {
-
+    int a;
     static String nombre_bd = "DB_usuario";
     static String tblusu = "CREATE TABLE tblusuario(idusuario integer primary key autoincrement, nombres text, apellidos text, usuario text, contra text)";
     public DB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -38,14 +38,15 @@ public class DB extends SQLiteOpenHelper {
 
         return datocursor; }
 
-    public Cursor consultar_usuario(String accion, String usuario, String contra){
+    public Cursor consultar_usuario(String accion){
+
         Cursor datocursor = null;
         SQLiteDatabase sqLiteDatabaseW = getWritableDatabase();
         SQLiteDatabase sqLiteDatabaseR = getReadableDatabase();
 
         switch (accion){
             case "consultar":
-                datocursor = sqLiteDatabaseR.rawQuery("SELECT * FROM tblusuario WHERE usuario = "+usuario+" AND contra ='"+contra+"'",null);
+                datocursor = sqLiteDatabaseR.rawQuery("SELECT * FROM tblusuario ",null);
                 break;
         }
 
