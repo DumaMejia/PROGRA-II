@@ -1,40 +1,32 @@
 package com.example.calculadora1;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.json.JSONObject;
 
-public class AgregarProducto extends AppCompatActivity {
+public class AgregarUsuario extends AppCompatActivity {
 
 
     FloatingActionButton btnregresar;
-    String accion = "nuevo";
+    String idusuario, idlocal, accion = "nuevo", rev;
     Button btnagregar;
     DB miconexion;
+    utilidades miUrl;
+    detectarInternet di;
     TextView temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar_producto);
+        setContentView(R.layout.activity_agregar_usuario);
 
         miconexion = new DB(getApplicationContext(),"",null,1);
         btnregresar = findViewById(R.id.btnregresar);
@@ -57,15 +49,34 @@ public class AgregarProducto extends AppCompatActivity {
             temp = findViewById(R.id.txtapellidos);
             String apellidos = temp.getText().toString().trim();
 
-            temp = findViewById(R.id.txtusuario);
-            String usuario = temp.getText().toString().trim();
+            temp = findViewById(R.id.txtcorreo);
+            String correo = temp.getText().toString().trim();
 
             temp = findViewById(R.id.txtcontra);
             String contra = temp.getText().toString().trim();
 
-            String[] datos = {nombres, apellidos, usuario, contra};
-            miconexion.agregar_usuario(accion, datos);
+            JSONObject datospelis = new JSONObject();
+            if(accion.equals("modificar") && idusuario.length()>0 && rev.length()>0 ){
+                datospelis.put("_id",idusuario);
+                datospelis.put("_rev",rev);
+            }
 
+
+
+            datospelis.put("nombres",nombres);
+            datospelis.put("apellidos",apellidos);
+            datospelis.put("usuario",correo);
+            datospelis.put("contra",contra);
+
+            String[] datos = {nombres, apellidos, correo, contra};
+
+            di = new detectarInternet(getApplicationContext());
+            if (di.hayConexionInternet()) {
+                enviarDatosUsuarios guardarpelis = new enviarDatosUsuarios(getApplicationContext());
+                String resp = guardarpelis.execute(datospelis.toString()).get();
+            }
+
+            miconexion.agregar_usuario(accion, datos);
             mensajes("Registro guardado con exito.");
             regresarmainactivity();
         }catch (Exception w){

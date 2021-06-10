@@ -52,3 +52,5 @@ public class DB extends SQLiteOpenHelper {
 
         return datocursor; }
 }
+
+

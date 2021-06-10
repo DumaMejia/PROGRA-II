@@ -22,18 +22,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
-        android:text="Marca"
+        android:text="Nombre"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/lblpresentacion"
+        android:id="@+id/lbldescrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lblcodigo"
+        android:layout_below="@id/lblTitulo"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="5dp"
-        android:text="presentacion"
+        android:text="Descripcion"
         android:textColor="@color/black"
         android:textSize="12sp" />
 
@@ -41,26 +41,10 @@
         android:id="@+id/lblprecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lbldescripcion"
+        android:layout_below="@id/lbldescrip"
         android:layout_marginLeft="80dp"
+        android:text="precio"
         android:textColor="@color/black"
         android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/lblcodigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lblTitulo"
-        android:layout_marginLeft="80dp"
-        android:textColor="@color/black"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/lbldescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lblpresentacion"
-        android:layout_marginLeft="80dp"
-        android:textColor="@color/black"
-        android:textSize="12sp" />
 </RelativeLayout>

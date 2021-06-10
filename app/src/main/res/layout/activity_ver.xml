@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ver">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imgfotopelicula"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/txtDueno"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgfotopelicula"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Dueño" />
+
+            <TextView
+                android:id="@+id/txtDueno1"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDueno"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Dueño" />
+
+
+            <TextView
+                android:id="@+id/txtnom"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDueno"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Nombre" />
+
+            <TextView
+                android:id="@+id/txtnom1"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtnom"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Nombre" />
+
+            <TextView
+                android:id="@+id/txtdesc"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtnom1"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Descripcion" />
+
+            <TextView
+                android:id="@+id/txtdesc1"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtdesc"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Descripcion" />
+
+            <TextView
+                android:id="@+id/txtPresen"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtdesc1"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Presentacion" />
+            <TextView
+                android:id="@+id/txtpresen1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_below="@id/txtPresen"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Presentacion" />
+
+            <TextView
+                android:id="@+id/txtpreci"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtdesc1"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Precio" />
+            <TextView
+                android:id="@+id/txtprecio1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_below="@id/txtpreci"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Precio" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnregresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="25dp"
+        android:layout_gravity="right"
+        android:src="@drawable/abc_vector_test" />
+
+</RelativeLayout>

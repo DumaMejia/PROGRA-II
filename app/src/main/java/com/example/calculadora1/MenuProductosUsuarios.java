@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,7 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MenuInicio extends AppCompatActivity {
+public class MenuProductosUsuarios extends AppCompatActivity {
 
     //Roberto Carlos Hernandez Melendez USIS016520
     //Duma Roberto Zelaya Mejia USIS007420
@@ -52,11 +53,13 @@ public class MenuInicio extends AppCompatActivity {
     String idlocal;
     detectarInternet di;
     int position = 0;
-    int prueba = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.activity_pro_usu);
 
         di = new detectarInternet(getApplicationContext());
         btnadd = findViewById(R.id.btnAgregarProducto);
@@ -71,7 +74,7 @@ public class MenuInicio extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_productos, menu);
+        menuInflater.inflate(R.menu.menu_edit, menu);
         try {
             if(di.hayConexionInternet()) {
                 AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) menuInfo;
@@ -93,17 +96,22 @@ public class MenuInicio extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         try {
             switch (item.getItemId()) {
-
-                case R.id.mxnVistaP:
-                    ver("datos");
+                case R.id.mxnAgregar:
+                    Agregar("nuevo");
+                    break;
+                case R.id.mxnModificar:
+                    Modificar("modificar");
+                    break;
+                case R.id.mxnEliminar:
+                    Eliminar();
                     break;
             }
-        }catch (Exception ex){
-            mensajes(ex.getMessage());
-        }
-        return super.onContextItemSelected(item);
-    }
+            }catch(Exception ex){
+                mensajes(ex.getMessage());
+            }
+            return super.onContextItemSelected(item);
 
+        }
     private void ver(String datos) {
         Bundle parametros = new Bundle();
         parametros.putString("accion","ver" );
@@ -144,6 +152,51 @@ public class MenuInicio extends AppCompatActivity {
         i.putExtras(parametros);
         startActivity(i);
     }
+        private void Eliminar(){
+            try {
+                androidx.appcompat.app.AlertDialog.Builder confirmacion = new AlertDialog.Builder(MenuProductosUsuarios.this);
+                confirmacion.setTitle("Esta seguro de eliminar?");
+                if (di.hayConexionInternet())
+                {
+                    jsonObjectDatosProductos = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value");
+                    confirmacion.setMessage(jsonObjectDatosProductos.getString("titulo"));
+                }else {
+                    confirmacion.setMessage(datosproductoscursor.getString(2));
+                }
+
+                confirmacion.setPositiveButton("Si", (dialog, which) -> {
+
+                    try {
+                        if(di.hayConexionInternet()){
+                            ConexionServer objElimina = new ConexionServer();
+                            String resp =  objElimina.execute(u.url_mto +
+                                    jsonObjectDatosProductos.getString("_id")+ "?rev="+
+                                    jsonObjectDatosProductos.getString("_rev"), "DELETE"
+                            ).get();
+                            JSONObject jsonRespEliminar = new JSONObject(resp);
+                            if(jsonRespEliminar.getBoolean("ok")){
+                                jsonArrayDatosProductos.remove(position);
+                                mostrarDatos();
+                            }
+                        }
+
+                        miconexion = new DBP(getApplicationContext(), "", null, 1);
+                        datosproductoscursor = miconexion.eliminar("eliminar", datosproductoscursor.getString(0));
+                        obtenerDatos();
+                        mensajes("Registro eliminado");
+                        dialog.dismiss();
+                    }catch (Exception e){
+                    }
+                });
+                confirmacion.setNegativeButton("No", (dialog, which) -> {
+                    mensajes("Eliminacion detendia");
+                    dialog.dismiss();
+                });
+                confirmacion.create().show();
+            } catch (Exception ex){
+                mensajes(ex.getMessage());
+            }
+        }
 
 
     private void buscarPelicula() {
@@ -161,12 +214,10 @@ public class MenuInicio extends AppCompatActivity {
                         productosArrayList.addAll(productosArrayListCopy);
                     } else{//si esta buescando biuscar los datos
                         for (Productos B : productosArrayListCopy){
-                            String titulo = B.getNombre();
-                            String sinopsis = B.getDescripcion();
+                            String idU = B.getIdUsu();
 
                             String buscando = tempVal.getText().toString().trim().toLowerCase();
-                            if(titulo.toLowerCase().contains(buscando) ||
-                                    sinopsis.toLowerCase().contains(buscando)
+                            if(idU.toLowerCase().contains(buscando)
                             ){
                                 productosArrayList.add(B);
                             }
@@ -185,6 +236,47 @@ public class MenuInicio extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+    private void Modificar(String accion){
+        Bundle parametros = new Bundle();
+        parametros.putString("accion", accion);
+        parametros.putString("idlocal", idlocal);
+        jsonObjectDatosProductos = new JSONObject();
+        JSONObject jsonValueObject = new JSONObject();
+        if(di.hayConexionInternet())
+        {
+            try {
+                if(jsonArrayDatosProductos.length()>0){
+                    parametros.putString("datos", jsonArrayDatosProductos.getJSONObject(position).toString() );
+                }
+            }catch (Exception e){
+                mensajes(e.getMessage());
+            }
+        }else{
+            try {
+                jsonArrayDatosProductos = new JSONArray();
+                jsonObjectDatosProductos.put("_id", datosproductoscursor.getString(0));
+                jsonObjectDatosProductos.put("_rev", datosproductoscursor.getString(0));
+                jsonObjectDatosProductos.put("idUsu", datosproductoscursor.getString(1));
+                jsonObjectDatosProductos.put("nombre", datosproductoscursor.getString(2));
+                jsonObjectDatosProductos.put("descripcion", datosproductoscursor.getString(3));
+                jsonObjectDatosProductos.put("presentacion", datosproductoscursor.getString(4));
+                jsonObjectDatosProductos.put("precio", datosproductoscursor.getString(5));
+                jsonObjectDatosProductos.put("urlfoto", datosproductoscursor.getString(6));
+                jsonValueObject.put("value", jsonObjectDatosProductos);
+                jsonArrayDatosProductos.put(jsonValueObject);
+                if(jsonArrayDatosProductos.length()>0){
+                    parametros.putString("datos", jsonArrayDatosProductos.getJSONObject(position).toString() );
+                }
+
+            }catch (Exception e){
+                mensajes(e.getMessage());
+            }
+        }
+        Intent i = new Intent(getApplicationContext(), agregarProductos.class);
+        i.putExtras(parametros);
+        startActivity(i);
     }
 
 
@@ -217,6 +309,7 @@ public class MenuInicio extends AppCompatActivity {
             String resp = conexionServer.execute(u.urlServerP, "GET").get();
             jsonObjectDatosProductos=new JSONObject(resp);
             jsonArrayDatosProductos = jsonObjectDatosProductos.getJSONArray("rows");
+
             mostrarDatos();
         }catch (Exception ex){
             mensajes(ex.getMessage());

@@ -1,75 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarUsuario">
 
-        <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvrPhoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="150dp">
+        <ImageButton
+            android:id="@+id/imgFotoProducto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
 
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_below="@id/cvrPhoto"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="nombre"/>
+    <EditText
+        android:id="@+id/txtDescripcion"
+        android:layout_below="@id/txtNombre"
+        android:layout_margin="10dp"
+        android:hint="Descrpcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/txtnombres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:hint="Nombres" />
-
-            <EditText
-                android:id="@+id/txtapellidos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtnombres"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:hint="Apellidos" />
-
-            <EditText
-                android:id="@+id/txtusuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtapellidos"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:hint="Usuario" />
-
-
-            <EditText
-                android:id="@+id/txtcontra"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtusuario"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:hint="Contraseña" />
-
-
-            <Button
-                android:id="@+id/btnguardar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtcontra"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:text="Guardar registro" />
-
-        </LinearLayout>
-    </ScrollView>
+    <EditText
+        android:id="@+id/txtPresentacion"
+        android:layout_below="@id/txtDescripcion"
+        android:layout_margin="10dp"
+        android:hint="Presentacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/txtPrecio"
+        android:layout_below="@id/txtPresentacion"
+        android:layout_margin="10dp"
+        android:hint="Precio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnGuardarProducto"
+        android:layout_below="@id/txtPrecio"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar Producto"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnregresar"
+        android:id="@+id/btnAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="25dp"
-        android:layout_gravity="right"
+        android:layout_margin="20dp"
         android:src="@drawable/abc_vector_test" />
-
 </RelativeLayout>
