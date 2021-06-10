@@ -20,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculadora1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MenuProductosUsuarios"></activity>
         <activity android:name=".AgregarUsuario"/>
         <activity android:name=".MenuInicio"/>
-        <activity android:name=".Menue"/>
         <activity android:name=".ver"/>
-        <activity android:name=".MenuProductosUsuarios"/>
-        <activity android:name=".agregarProductos">
+        <activity android:name=".agregarProductos"/>
+        <activity android:name=".Menue"/>
+        <activity android:name=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

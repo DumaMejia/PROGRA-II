@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        di = new detectarInternet(getApplicationContext());
+
         login = findViewById(R.id.btniniciar);
         registro = findViewById(R.id.btnregistrar);
         obtenerDatos();
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     if (jsonObject.getString("usuario").equals(usuario)){
                         if (jsonObject.getString("contra").equals(contra)){
                             a++;
-                            idU = jsonObject.getString("idusuario");
+                            idU = jsonObject.getString("_id");
                         }
                     }
 
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (a>0){
                 mensajes("bienvenido");
-                Intent i = new Intent(getApplicationContext(), MenuInicio.class);
+                Intent i = new Intent(getApplicationContext(), Menue.class);
                 startActivity(i);
             }else {
                 mensajes("No se encontro el usuario");
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     }while (datosusuariocursor.moveToNext());
                     if (a>0){
                         mensajes("bienvenido");
-                        Intent i = new Intent(getApplicationContext(), MenuInicio.class);
+                        Intent i = new Intent(getApplicationContext(), Menue.class);
                         startActivity(i);
                     }else {
                         mensajes("No se encontro el usuario");

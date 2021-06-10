@@ -6,6 +6,10 @@ import android.net.NetworkInfo;
 
 public class detectarInternet {
 
+    //Roberto Carlos Hernandez Melendez USIS016520
+    //Duma Roberto Zelaya Mejia USIS007420
+    //Jose Roberto Del Rio Maravilla USIS015220
+
     private Context context;
 
     public detectarInternet(Context context) {
@@ -25,5 +29,4 @@ public class detectarInternet {
         }
         return false;
     }
-
 }

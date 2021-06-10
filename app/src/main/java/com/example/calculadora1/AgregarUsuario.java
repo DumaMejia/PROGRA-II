@@ -49,6 +49,12 @@ public class AgregarUsuario extends AppCompatActivity {
             temp = findViewById(R.id.txtapellidos);
             String apellidos = temp.getText().toString().trim();
 
+            temp = findViewById(R.id.txtdireccion);
+            String direccion = temp.getText().toString().trim();
+
+            temp = findViewById(R.id.txttelefono);
+            String telefono = temp.getText().toString().trim();
+
             temp = findViewById(R.id.txtcorreo);
             String correo = temp.getText().toString().trim();
 
@@ -65,10 +71,12 @@ public class AgregarUsuario extends AppCompatActivity {
 
             datospelis.put("nombres",nombres);
             datospelis.put("apellidos",apellidos);
+            datospelis.put("direccion",direccion);
+            datospelis.put("telefono",telefono);
             datospelis.put("usuario",correo);
             datospelis.put("contra",contra);
 
-            String[] datos = {nombres, apellidos, correo, contra};
+            String[] datos = {nombres, apellidos, direccion, telefono, correo, contra};
 
             di = new detectarInternet(getApplicationContext());
             if (di.hayConexionInternet()) {
