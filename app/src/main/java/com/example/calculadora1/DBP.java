@@ -13,7 +13,7 @@ public class DBP extends SQLiteOpenHelper {
     //Jose Roberto Del Rio Maravilla USIS015220
 
     static String nombre_bd = "DB_Prod";
-    static String tblproducto = "CREATE TABLE tblproducto(idprod integer primary key autoincrement, idUsu text, nombre text, descripcion text, presentacion text, precio text, urlfoto text)";
+    static String tblproducto = "CREATE TABLE tblproducto(idprod integer primary key autoincrement, idUsu text, idl text, nombre text, descripcion text, presentacion text, precio text, urlfoto text)";
     public DBP(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, nombre_bd, factory, version);
     }
@@ -38,10 +38,10 @@ public class DBP extends SQLiteOpenHelper {
                 break;
 
             case "nuevo":
-                sqLiteDatabaseW.execSQL("INSERT INTO tblproducto(idUsu, nombre, descripcion, presentacion, precio, urlfoto) VALUES ('"+datos[1]+"','"+datos[2]+"','"+datos[3]+"','"+datos[4]+"','"+datos[5]+"','"+datos[6]+"')");
+                sqLiteDatabaseW.execSQL("INSERT INTO tblproducto(idUsu, idl, nombre, descripcion, presentacion, precio, urlfoto) VALUES ('"+datos[1]+"','"+datos[2]+"','"+datos[3]+"','"+datos[4]+"','"+datos[5]+"','"+datos[6]+"','"+datos[7]+"')");
                 break;
             case "modificar":
-                sqLiteDatabaseW.execSQL("update tblproducto set IdUsu='"+datos[1]+"',nombre='"+datos[2]+"',descripcion='"+datos[3]+"',presentacion='"+datos[4]+"',precio='"+datos[5]+"',urlfoto='"+datos[6]+"' where idprod='"+datos[0]+"'");
+                sqLiteDatabaseW.execSQL("update tblproducto set IdUsu='"+datos[1]+"',idl='"+datos[2]+"',nombre='"+datos[2]+"',descripcion='"+datos[3]+"',presentacion='"+datos[4]+"',precio='"+datos[5]+"',urlfoto='"+datos[6]+"' where idprod='"+datos[0]+"'");
                 break;
             case "eliminar":
                 sqLiteDatabaseW.execSQL("DELETE FROM tblproducto WHERE idprod='"+ datos[0]+"'");

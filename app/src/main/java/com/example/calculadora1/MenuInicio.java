@@ -39,7 +39,7 @@ public class MenuInicio extends AppCompatActivity {
     //Jose Roberto Del Rio Maravilla USIS015220
 
 
-    FloatingActionButton btnadd;
+    FloatingActionButton btnatras;
     DBP miconexion;
     ListView ltsproductos;
     Cursor datosproductoscursor = null;
@@ -49,7 +49,7 @@ public class MenuInicio extends AppCompatActivity {
     JSONArray jsonArrayDatosProductos;
     JSONObject jsonObjectDatosProductos;
     utilidades u;
-    String idlocal;
+    String idlocal, Idl, Idu, IduU, IdlU;
     detectarInternet di;
     int position = 0;
     int prueba = 0;
@@ -58,10 +58,24 @@ public class MenuInicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
+        try {
+
+            Bundle recibirparametros = getIntent().getExtras();
+
+            IduU = recibirparametros.getString("IduU");
+            IdlU = recibirparametros.getString("IdlU");
+
+            mensajes(IdlU);
+            mensajes(IduU);
+
+        }catch (Exception e){
+            mensajes(e.getMessage());
+        }
+
         di = new detectarInternet(getApplicationContext());
-        btnadd = findViewById(R.id.btnAgregarProducto);
-        btnadd.setOnClickListener(v->{
-            Agregar("nuevo");
+        btnatras = findViewById(R.id.btnAtrasMI);
+        btnatras.setOnClickListener(v->{
+            regresarmenu();
         });
         obtenerDatos();
         buscarPelicula();
@@ -81,7 +95,7 @@ public class MenuInicio extends AppCompatActivity {
             } else {
                 AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo)menuInfo;
                 datosproductoscursor.moveToPosition(adapterContextMenuInfo.position);
-                menu.setHeaderTitle(datosproductoscursor.getString(2));
+                menu.setHeaderTitle(datosproductoscursor.getString(4));
             }
             idlocal = datosproductoscursor.getString(0);
         }catch (Exception e){
@@ -114,7 +128,11 @@ public class MenuInicio extends AppCompatActivity {
         {
             try {
                 if(jsonArrayDatosProductos.length()>0){
-                    parametros.putString("datos", jsonArrayDatosProductos.getJSONObject(position).toString() );
+                    Idu = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value").getString("idUsu");
+                    parametros.putString("Idu", Idu);
+                    parametros.putString("IduU", IduU);
+                    parametros.putString("IdlU", IdlU);
+                    parametros.putString("datos", jsonArrayDatosProductos.getJSONObject(position).toString());
                 }
             }catch (Exception e){
                 mensajes(e.getMessage());
@@ -125,14 +143,19 @@ public class MenuInicio extends AppCompatActivity {
                 jsonObjectDatosProductos.put("_id", datosproductoscursor.getString(0));
                 jsonObjectDatosProductos.put("_rev", datosproductoscursor.getString(0));
                 jsonObjectDatosProductos.put("idUsu", datosproductoscursor.getString(1));
-                jsonObjectDatosProductos.put("nombre", datosproductoscursor.getString(2));
-                jsonObjectDatosProductos.put("descripcion", datosproductoscursor.getString(3));
-                jsonObjectDatosProductos.put("presentacion", datosproductoscursor.getString(4));
-                jsonObjectDatosProductos.put("precio", datosproductoscursor.getString(5));
-                jsonObjectDatosProductos.put("urlfoto", datosproductoscursor.getString(6));
+                jsonObjectDatosProductos.put("idl", datosproductoscursor.getString(2));
+                jsonObjectDatosProductos.put("nombre", datosproductoscursor.getString(3));
+                jsonObjectDatosProductos.put("descripcion", datosproductoscursor.getString(4));
+                jsonObjectDatosProductos.put("presentacion", datosproductoscursor.getString(5));
+                jsonObjectDatosProductos.put("precio", datosproductoscursor.getString(6));
+                jsonObjectDatosProductos.put("urlfoto", datosproductoscursor.getString(7));
                 jsonValueObject.put("value", jsonObjectDatosProductos);
                 jsonArrayDatosProductos.put(jsonValueObject);
                 if(jsonArrayDatosProductos.length()>0){
+                    Idl = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value").getString("idl");
+                    parametros.putString("IduU", IduU);
+                    parametros.putString("IdlU", IdlU);
+                    parametros.putString("Idl", Idl);
                     parametros.putString("datos", jsonArrayDatosProductos.getJSONObject(position).toString() );
                 }
 
@@ -248,12 +271,13 @@ public class MenuInicio extends AppCompatActivity {
                         misProductos = new Productos(
                                 jsonObject.getString("_id"),
                                 jsonObject.getString("_rev"),
-                                jsonObject.getString("titulo"),
-                                jsonObject.getString("sinopsis"),
-                                jsonObject.getString("duracion"),
+                                jsonObject.getString("idUsu"),
+                                jsonObject.getString("idl"),
+                                jsonObject.getString("nombre"),
+                                jsonObject.getString("descripcion"),
+                                jsonObject.getString("presentacion"),
                                 jsonObject.getString("precio"),
-                                jsonObject.getString("urlfoto"),
-                                jsonObject.getString("urltriler")
+                                jsonObject.getString("urlfoto")
                         );
                         productosArrayList.add(misProductos);
                     }}
@@ -267,7 +291,8 @@ public class MenuInicio extends AppCompatActivity {
                             datosproductoscursor.getString(3),//
                             datosproductoscursor.getString(4),//
                             datosproductoscursor.getString(5), //
-                            datosproductoscursor.getString(6) //
+                            datosproductoscursor.getString(6), //
+                            datosproductoscursor.getString(7) //
                     );
                     productosArrayList.add(misProductos);
                 }while(datosproductoscursor.moveToNext());
@@ -285,6 +310,15 @@ public class MenuInicio extends AppCompatActivity {
     private void mensajes(String msg){
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
+    private void regresarmenu() {
+        Bundle parametros = new Bundle();
+        parametros.putString("Idu", IduU);
+        parametros.putString("Idl", IdlU);
+        Intent i = new Intent(getApplicationContext(), Menue.class);
+        i.putExtras(parametros);
+        startActivity(i);
+    }
+
     private class ConexionServer extends AsyncTask<String, String, String> {
         HttpURLConnection urlConnection;
 

@@ -4,14 +4,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 public class DB extends SQLiteOpenHelper {
 
 
-    int a;
     static String nombre_bd = "DB_usuario";
     static String tblusu = "CREATE TABLE tblusuario(idusuario integer primary key autoincrement, nombres text, apellidos text, direccion, telefono, usuario text, contra text)";
     public DB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {

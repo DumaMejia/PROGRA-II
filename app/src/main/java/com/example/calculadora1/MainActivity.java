@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     JSONObject jsonObjectDatosUsuarios;
     Cursor datosusuariocursor = null;
     String idU;
+    String idl;
+    agregarProductos M;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +59,14 @@ public class MainActivity extends AppCompatActivity {
     private void obtenerDatos(){
 
         try{
-
-            mensajes("Mostrando datos desde la nube");
-            obtenerDatosOnLine();
-            obtenerDatosOffLine();
-
+            if (di.hayConexionInternet()) {
+                mensajes("ESTADO: ONLINE");
+                obtenerDatosOnLine();
+                obtenerDatosOffLine();
+            }else{
+                obtenerDatosOffLine();
+                mensajes("ESTADO: OFFLINE");
+            }
 
 
         }catch (Exception e){
@@ -125,32 +130,19 @@ public class MainActivity extends AppCompatActivity {
             }catch (Exception ex){
                 mensajes(ex.getMessage());
             }
-            if (a>0){
-                mensajes("bienvenido");
-                Intent i = new Intent(getApplicationContext(), Menue.class);
-                startActivity(i);
-            }else {
-                mensajes("No se encontro el usuario");
-            }
 
         } else {
             try {
                 if (datosusuariocursor.moveToFirst()){
                     do {
-                        if (datosusuariocursor.getString(3).equals(usuario)){
-                            if (datosusuariocursor.getString(4).equals(contra)){
+                        if (datosusuariocursor.getString(5).equals(usuario)){
+                            if (datosusuariocursor.getString(6).equals(contra)){
                                 a++;
                                 idU = datosusuariocursor.getString(0);
                             }
                         }
                     }while (datosusuariocursor.moveToNext());
-                    if (a>0){
-                        mensajes("bienvenido");
-                        Intent i = new Intent(getApplicationContext(), Menue.class);
-                        startActivity(i);
-                    }else {
-                        mensajes("No se encontro el usuario");
-                    }
+
                 }
 
             }catch (Exception e){
@@ -158,13 +150,36 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+        if (a>0){
 
+            if (di.hayConexionInternet()){
+                if (datosusuariocursor.moveToFirst()) {
+                    do {
+                        if (datosusuariocursor.getString(5).equals(usuario)) {
+                            if (datosusuariocursor.getString(6).equals(contra)) {
+                                idl = datosusuariocursor.getString(0);
+                            }
+                        }
+                    } while (datosusuariocursor.moveToNext());
+                }
+            }
 
+            mensajes("bienvenido");
+            Bundle parametros = new Bundle();
+            parametros.putString("Idu", idU);
+            parametros.putString("Idl", idl);
+            Intent i = new Intent(getApplicationContext(), Menue.class);
+            i.putExtras(parametros);
+            startActivity(i);
+        }else {
+            mensajes("No se encontro el usuario");
+        }
     }
 
     private void mensajes(String msg){
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
+
 
     private class ConexionServer extends AsyncTask<String, String, String> {
         HttpURLConnection urlConnection;

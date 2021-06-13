@@ -44,7 +44,7 @@ public class adaptadorImagenes extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         layoutInflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View encuadre = layoutInflater.inflate(R.layout.listview_imagenes, parent, false);
-        TextView temp = encuadre.findViewById(R.id.lblTitulo);
+        TextView temp = encuadre.findViewById(R.id.lblnombreP);
         ImageView img = encuadre.findViewById(R.id.imgPhoto);
         try{
             misProductos = datosprodArrayList.get(position);

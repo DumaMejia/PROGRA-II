@@ -123,6 +123,25 @@
                 android:layout_margin="15dp"
                 android:hint="Precio" />
 
+            <TextView
+                android:id="@+id/txtubi"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtprecio1"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Ubicacion" />
+            <TextView
+                android:id="@+id/txtubi1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_below="@id/txtubi"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:hint="Ubicacion" />
+
 
         </LinearLayout>
     </ScrollView>

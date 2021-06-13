@@ -3,16 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/txtBuscarProductos"
-        android:hint="Buscar producto"
+    <TextView
+        android:id="@+id/txtidl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:hint="id" />
+
     <ListView
         android:id="@+id/ltsproductos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAtrasMU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="96dp"
+        android:src="@drawable/abc_vector_test" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAgregarProducto"

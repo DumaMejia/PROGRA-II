@@ -30,7 +30,7 @@
                 android:layout_margin="15dp"
                 android:hint="Apellidos" />
 
-            <EditText
+            <TextView
                 android:id="@+id/txtdireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,6 +76,15 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:text="Guardar registro" />
+
+            <Button
+                android:id="@+id/btngps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnguardar"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="Obtener ubicacion" />
 
         </LinearLayout>
     </ScrollView>

@@ -4,16 +4,18 @@ public class Productos {
     String idprod;
     String rev;
     String idUsu;
+    String idl;
     String nombre;
     String descripcion;
     String presentacion;
     String precio;
     String urlfoto;
 
-    public Productos(String idprod, String rev, String idUsu, String nombre, String descripcion, String presentacion, String precio, String urlfoto) {
+    public Productos(String idprod, String rev, String idUsu, String idl, String nombre, String descripcion, String presentacion, String precio, String urlfoto) {
         this.idprod = idprod;
         this.rev = rev;
         this.idUsu = idUsu;
+        this.idl = idl;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.presentacion = presentacion;
@@ -43,6 +45,14 @@ public class Productos {
 
     public void setIdUsu(String idUsu) {
         this.idUsu = idUsu;
+    }
+
+    public String getIdl() {
+        return idl;
+    }
+
+    public void setIdl(String idl) {
+        this.idl = idl;
     }
 
     public String getNombre() {

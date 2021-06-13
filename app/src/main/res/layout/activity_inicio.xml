@@ -15,8 +15,8 @@
         android:layout_marginTop="50dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAgregarProducto"
-        android:src="@android:drawable/ic_input_add"
+        android:id="@+id/btnAtrasMI"
+        android:src="@drawable/abc_vector_test"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"

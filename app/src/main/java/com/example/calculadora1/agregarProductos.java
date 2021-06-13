@@ -35,7 +35,7 @@ public class agregarProductos extends AppCompatActivity {
 
     FloatingActionButton btnregresar;
     ImageView imgpeli;
-    String urlfoto,idprod,idlocal, accion = "nuevo", rev;
+    String urlfoto,idprod,Idu,Idl,idlocal, accion = "nuevo", rev;
     Button btnagregar;
     DBP miconexion;
     TextView temp;
@@ -44,41 +44,62 @@ public class agregarProductos extends AppCompatActivity {
     detectarInternet di;
     private static final int RPQ= 100;
     private static final int RIG= 101;
-    private static final int RVD= 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_producto);
 
+        try {
+
+        Bundle recibirparametros = getIntent().getExtras();
+        Idl = recibirparametros.getString("Idl");
+        Idu = recibirparametros.getString("Idu");
+
+        mensajes(Idl);
+        mensajes(Idu);
+
+        }catch (Exception e) {
+            mensajes(e.getMessage());
+        }
+
         miconexion = new DBP(getApplicationContext(),"",null,1);
-        btnregresar = findViewById(R.id.btnregresar);
-        imgpeli = findViewById(R.id.imgfotopelicula);
+        btnregresar = findViewById(R.id.btnAtras);
+        imgpeli = findViewById(R.id.imgFotoProducto);
         btnagregar = findViewById(R.id.btnGuardarProducto);
 
-        btnregresar.setOnClickListener(v -> {
-            regresarmainactivity();
-        });
+        try {
 
-        imgpeli.setOnClickListener(v -> {
-            abrirgaleriaimagen();
-        });
+            btnregresar.setOnClickListener(v -> {
+                regresarmainactivity();
+            });
 
-        btnagregar.setOnClickListener(v -> {
-           agregar();
-        });
+            imgpeli.setOnClickListener(v -> {
+                abrirgaleriaimagen();
+            });
 
-            permisos();
-            mostrardatos();
+            btnagregar.setOnClickListener(v -> {
+                agregar();
+            });
+        }catch (Exception w){
+            mensajes(w.getMessage());
+        }
+
+           permisos();
+        mostrardatos();
     }
 
 
     private void agregar() {
+
+
         try {
             temp = findViewById(R.id.txtNombre);
             String nombre = temp.getText().toString();
 
-            String idUsu = M.idU;
+            String idUsu = Idu;
+
+            String idl = Idl;
 
             temp = findViewById(R.id.txtDescripcion);
             String descripcion = temp.getText().toString();
@@ -100,6 +121,7 @@ public class agregarProductos extends AppCompatActivity {
 
             datosproductos.put("nombre",nombre);
             datosproductos.put("idUsu",idUsu);
+            datosproductos.put("idl",idl);
             datosproductos.put("descripcion",descripcion);
             datosproductos.put("presentacion",presentacion);
             datosproductos.put("precio",precio);
@@ -111,7 +133,7 @@ public class agregarProductos extends AppCompatActivity {
                 datosproductos.put("urlfoto",urlfoto);
             }
 
-            String[] datos = {idlocal, nombre, idUsu, descripcion, presentacion, precio, urlfoto };
+            String[] datos = {idlocal, nombre, idUsu, idl, descripcion, presentacion, precio, urlfoto };
 
             di = new detectarInternet(getApplicationContext());
             if (di.hayConexionInternet()) {
@@ -139,13 +161,13 @@ public class agregarProductos extends AppCompatActivity {
                 rev = datos.getString("_rev");
 
                 temp = findViewById(R.id.txtNombre);
-                temp.setText(datos.getString("titulo"));
+                temp.setText(datos.getString("nombre"));
 
                 temp = findViewById(R.id.txtDescripcion);
-                temp.setText(datos.getString("sinopsis"));
+                temp.setText(datos.getString("descripcion"));
 
                 temp = findViewById(R.id.txtPresentacion);
-                temp.setText(datos.getString("duracion"));
+                temp.setText(datos.getString("presentacion"));
 
                 temp = findViewById(R.id.txtPrecio);
                 temp.setText(datos.getString("precio"));
@@ -168,8 +190,8 @@ public class agregarProductos extends AppCompatActivity {
          }else {
             ActivityCompat.requestPermissions(agregarProductos.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},RPQ);
         }
-    }else {
-      }
+    }
+
     }
 
     @Override
@@ -196,14 +218,18 @@ public class agregarProductos extends AppCompatActivity {
         if (requestCode== RPQ){
             if(permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             }else{
-                mensajes("Por favor dame los permisos");
+                mensajes("Por favor valida permisos");
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void regresarmainactivity() {
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        Bundle parametros = new Bundle();
+        parametros.putString("Idu", Idu);
+        parametros.putString("Idl", Idl);
+        Intent i = new Intent(getApplicationContext(), MenuProductosUsuarios.class);
+        i.putExtras(parametros);
         startActivity(i);
     }
 
@@ -237,10 +263,6 @@ public class agregarProductos extends AppCompatActivity {
                 Uri contentUri = null;
                 if ("image".equals(type)) {
                     contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if ("video".equals(type)) {
-                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if ("audio".equals(type)) {
-                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
 
                 final String selection = "_id=?";

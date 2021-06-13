@@ -24,6 +24,7 @@ import java.net.URL;
 public class Menue extends AppCompatActivity {
 
     Button Bproductos, Uproductos;
+    String Idu, Idl;
 
 
     @Override
@@ -31,18 +32,41 @@ public class Menue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menue);
 
+        try {
+
+            Bundle recibirparametros = getIntent().getExtras();
+            Idl = recibirparametros.getString("Idl");
+            Idu = recibirparametros.getString("Idu");
+
+            mensajes(Idl);
+            mensajes(Idu);
+
+        }catch (Exception e){
+        mensajes(e.getMessage());
+    }
         Bproductos = findViewById(R.id.btnBuscarProducto);
         Uproductos = findViewById(R.id.btnProductosUsuario);
 
         Bproductos.setOnClickListener(v->{
+            Bundle parametros = new Bundle();
+            parametros.putString("IduU", Idu);
+            parametros.putString("IdlU", Idl);
             Intent i = new Intent(getApplicationContext(), MenuInicio.class);
+            i.putExtras(parametros);
             startActivity(i);
         });
 
         Uproductos.setOnClickListener(v->{
+            Bundle parametros = new Bundle();
+            parametros.putString("Idu", Idu);
+            parametros.putString("Idl", Idl);
             Intent i = new Intent(getApplicationContext(), MenuProductosUsuarios.class);
+            i.putExtras(parametros);
             startActivity(i);
         });
+    }
+    private void mensajes(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
 
 
