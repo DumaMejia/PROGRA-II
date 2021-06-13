@@ -61,10 +61,11 @@ public class AgregarUsuario extends AppCompatActivity {
 
         di = new detectarInternet(getApplicationContext());
 
-        miconexion = new DB(getApplicationContext(),"",null,1);
+        miconexion = new DB(getApplicationContext(), "", null, 1);
         btnregresar = findViewById(R.id.btnregresar);
         btnagregar = findViewById(R.id.btnguardar);
         btngps = findViewById(R.id.btngps);
+        Dir =  findViewById(R.id.txtdirecciongps);
         obtenerDatos();
         FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -76,9 +77,15 @@ public class AgregarUsuario extends AppCompatActivity {
             agregar();
         });
 
-        btngps.setOnClickListener(v -> {
-            ubicacion();
-        });
+        try {
+
+
+            btngps.setOnClickListener(v -> {
+                ubicacion();
+            });
+        } catch (Exception w) {
+            mensajes(w.getMessage());
+        }
     }
 
     private void agregar() {
@@ -89,7 +96,7 @@ public class AgregarUsuario extends AppCompatActivity {
             temp = findViewById(R.id.txtapellidos);
             String apellidos = temp.getText().toString().trim();
 
-            temp = findViewById(R.id.txtdireccion);
+            temp = findViewById(R.id.txtdirecciongps);
             String direccion = temp.getText().toString().trim();
 
             temp = findViewById(R.id.txttelefono);
@@ -103,7 +110,7 @@ public class AgregarUsuario extends AppCompatActivity {
 
             int a = 0;
 
-            if(di.hayConexionInternet()) {
+            if (di.hayConexionInternet()) {
                 try {
                     JSONObject jsonObject;
 
@@ -112,12 +119,12 @@ public class AgregarUsuario extends AppCompatActivity {
 
                         if (jsonObject.getString("usuario").equals(correo)) {
 
-                            if (datosusuariocursor.moveToFirst()){
+                            if (datosusuariocursor.moveToFirst()) {
                                 do {
-                                    if (datosusuariocursor.getString(5).equals(correo)){
+                                    if (datosusuariocursor.getString(5).equals(correo)) {
                                         a++;
                                     }
-                                }while (datosusuariocursor.moveToNext());
+                                } while (datosusuariocursor.moveToNext());
 
                             }
 
@@ -129,19 +136,19 @@ public class AgregarUsuario extends AppCompatActivity {
                 }
             } else {
 
-                if (datosusuariocursor.moveToFirst()){
+                if (datosusuariocursor.moveToFirst()) {
                     do {
-                        if (datosusuariocursor.getString(3).equals(correo)){
+                        if (datosusuariocursor.getString(3).equals(correo)) {
                             a++;
                         }
-                    }while (datosusuariocursor.moveToNext());
+                    } while (datosusuariocursor.moveToNext());
 
                 }
 
             }
 
 
-            if (a>0){
+            if (a > 0) {
 
                 mensajes("ESE CORREO YA ESTA EN USO");
                 temp = findViewById(R.id.txtnombres);
@@ -150,7 +157,7 @@ public class AgregarUsuario extends AppCompatActivity {
                 temp = findViewById(R.id.txtapellidos);
                 temp.setText("");
 
-                temp = findViewById(R.id.txtdireccion);
+                temp = findViewById(R.id.txtdirecciongps);
                 temp.setText("");
 
                 temp = findViewById(R.id.txttelefono);
@@ -164,21 +171,20 @@ public class AgregarUsuario extends AppCompatActivity {
 
 
             }
-            if(a==0){
+            if (a == 0) {
                 JSONObject datospelis = new JSONObject();
-                if(accion.equals("modificar") && idusuario.length()>0 && rev.length()>0 ){
-                    datospelis.put("_id",idusuario);
-                    datospelis.put("_rev",rev);
+                if (accion.equals("modificar") && idusuario.length() > 0 && rev.length() > 0) {
+                    datospelis.put("_id", idusuario);
+                    datospelis.put("_rev", rev);
                 }
 
 
-
-                datospelis.put("nombres",nombres);
-                datospelis.put("apellidos",apellidos);
-                datospelis.put("direccion",direccion);
-                datospelis.put("telefono",telefono);
-                datospelis.put("usuario",correo);
-                datospelis.put("contra",contra);
+                datospelis.put("nombres", nombres);
+                datospelis.put("apellidos", apellidos);
+                datospelis.put("direccion", direccion);
+                datospelis.put("telefono", telefono);
+                datospelis.put("usuario", correo);
+                datospelis.put("contra", contra);
 
                 String[] datos = {nombres, apellidos, direccion, telefono, correo, contra};
 
@@ -193,65 +199,84 @@ public class AgregarUsuario extends AppCompatActivity {
                 regresarmainactivity();
             }
 
-        }catch (Exception w){
+        } catch (Exception w) {
             mensajes(w.getMessage());
         }
     }
 
-    private void obtenerDatos(){
+    private void obtenerDatos() {
 
-        try{
+        try {
 
             mensajes("Mostrando datos desde la nube");
             obtenerDatosOnLine();
             obtenerDatosOffLine();
 
 
-
-        }catch (Exception e){
+        } catch (Exception e) {
             mensajes(e.getMessage());
         }
 
     }
-    private void ubicacion(){
 
-     if(ActivityCompat.checkSelfPermission(AgregarUsuario.this
+    private void ubicacion() {
+        try {
 
-             , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
-            //Cuando tengamos permiso
-         getLocation();
-     }else {
-         //Si no tenemos permiso
-         ActivityCompat.requestPermissions(AgregarUsuario.this
-                 ,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-     }
 
+            if (ActivityCompat.checkSelfPermission(AgregarUsuario.this
+
+                    , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                //Cuando tengamos permiso
+                getLocation();
+            } else {
+                //Si no tenemos permiso
+                ActivityCompat.requestPermissions(AgregarUsuario.this
+                        , new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            }
+        } catch (Exception e) {
+            mensajes(e.getMessage());
+        }
     }
 
     private void getLocation() {
-        FusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-                Location location = task.getResult();
-                if (location != null){
+        try {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            FusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if (location != null) {
 
-                    try {
+                        try {
 
-                        Geocoder geocoder = new Geocoder(AgregarUsuario.this,
-                                Locale.getDefault());
+                            Geocoder geocoder = new Geocoder(AgregarUsuario.this,
+                                    Locale.getDefault());
 
-                        List<Address> addresses = geocoder.getFromLocation(
-                                location.getLatitude(), location.getLongitude(), 1
-                        );
+                            List<Address> addresses = geocoder.getFromLocation(
+                                    location.getLatitude(), location.getLongitude(), 1
+                            );
 
-                        Dir.setText(addresses.get(0).getAddressLine(0));
+                                Dir.setText(addresses.get(0).getAddressLine(0));
 
-                    } catch (IOException e) {
-                        mensajes(e.getMessage());
+
+                        } catch (Exception e) {
+                            mensajes(e.getMessage());
+                        }
                     }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            mensajes(e.getMessage());
+        }
     }
 
     private void regresarmainactivity() {

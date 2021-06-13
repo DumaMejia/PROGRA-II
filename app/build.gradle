@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+//apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -29,6 +30,12 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
+    implementation platform('com.firebaseui:firebase-ui-storage:6.4.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
