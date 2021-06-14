@@ -23,7 +23,7 @@ import java.net.URL;
 
 public class Menue extends AppCompatActivity {
 
-    Button Bproductos, Uproductos;
+    Button Bproductos, Uproductos, Bc;
     String Idu, Idl;
 
 
@@ -43,6 +43,7 @@ public class Menue extends AppCompatActivity {
     }
         Bproductos = findViewById(R.id.btnBuscarProducto);
         Uproductos = findViewById(R.id.btnProductosUsuario);
+        Bc = findViewById(R.id.cerrarsesion);
 
         Bproductos.setOnClickListener(v->{
             Bundle parametros = new Bundle();
@@ -50,6 +51,11 @@ public class Menue extends AppCompatActivity {
             parametros.putString("IdlU", Idl);
             Intent i = new Intent(getApplicationContext(), MenuInicio.class);
             i.putExtras(parametros);
+            startActivity(i);
+        });
+
+        Bc.setOnClickListener(v->{
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
         });
 

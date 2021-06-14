@@ -59,6 +59,7 @@ public class ver extends AppCompatActivity {
             IduU = recibirparametros.getString("IduU");
             IdlU = recibirparametros.getString("IdlU");
 
+
         }catch (Exception e){
             mensajes(e.getMessage());
         }
@@ -260,6 +261,8 @@ try {
         Bundle parametros = new Bundle();
         parametros.putString("IduU", IduU);
         parametros.putString("IdlU", IdlU);
+        parametros.putString("Idl", Idl);
+        parametros.putString("Idu", Idu);
         Intent i = new Intent(getApplicationContext(), Comprar.class);
         i.putExtras(parametros);
         startActivity(i);

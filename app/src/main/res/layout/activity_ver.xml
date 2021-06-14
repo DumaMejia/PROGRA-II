@@ -146,7 +146,7 @@
                 android:id="@+id/btncomprar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Musuario"
+                android:layout_below="@id/txtubi1"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"

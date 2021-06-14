@@ -61,6 +61,8 @@ public class Comprar extends AppCompatActivity {
 
             IduU = recibirparametros.getString("IduU");
             IdlU = recibirparametros.getString("IdlU");
+            Idu = recibirparametros.getString("Idu");
+            Idl = recibirparametros.getString("Idl");
 
 
         }catch (Exception e){
@@ -87,23 +89,9 @@ try {
 
     private void Eliminar(){
         try {
-            temp.findViewById(R.id.txtnTarjeta);
-            String a = temp.getText().toString();
 
-            temp.findViewById(R.id.txtnomtar);
-            String b = temp.getText().toString();
-
-            temp.findViewById(R.id.txtfecha);
-            String c = temp.getText().toString();
-
-            temp.findViewById(R.id.txtcodigo);
-            String d = temp.getText().toString();
-            if (a==""||b==""||c==""||d==""){
-                mensajes("por favor llene los campos");
-            }else{
-                mensajes("compra realizada con exito");
-                regresarmenuInicio();
-            }
+            regresarmenuInicio();
+            mensajes("compra realizada con exito ");
 
         } catch (Exception ex) {
             mensajes(ex.getMessage());
@@ -188,6 +176,8 @@ try {
         Bundle parametros = new Bundle();
         parametros.putString("IduU", IduU);
         parametros.putString("IdlU", IdlU);
+        parametros.putString("Idu", Idu);
+        parametros.putString("Idl", Idl);
         Intent i = new Intent(getApplicationContext(), ver.class);
         i.putExtras(parametros);
         startActivity(i);

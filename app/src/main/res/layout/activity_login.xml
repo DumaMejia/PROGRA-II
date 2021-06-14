@@ -39,6 +39,7 @@
         android:layout_below="@+id/txtuss"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:inputType="textPassword"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:hint="Contraseña" />

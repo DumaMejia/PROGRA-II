@@ -67,6 +67,7 @@
                 android:layout_below="@id/txtcorreo"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
+                android:inputType="textPassword"
                 android:hint="Contraseña" />
 
 
