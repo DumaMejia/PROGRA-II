@@ -42,6 +42,7 @@
         <activity android:name=".AgregarUsuario"/>
         <activity android:name=".MenuInicio"/>
         <activity android:name=".ver"/>
+        <activity android:name=".Comprar"/>
         <activity android:name=".agregarProductos"/>
         <activity android:name=".Menue"/>
         <activity android:name=".MainActivity">

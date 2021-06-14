@@ -56,8 +56,6 @@ public class agregarProductos extends AppCompatActivity {
         Idl = recibirparametros.getString("Idl");
         Idu = recibirparametros.getString("Idu");
 
-        mensajes(Idl);
-        mensajes(Idu);
 
         }catch (Exception e) {
             mensajes(e.getMessage());

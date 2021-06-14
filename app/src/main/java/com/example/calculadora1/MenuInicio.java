@@ -52,7 +52,7 @@ public class MenuInicio extends AppCompatActivity {
     String idlocal, Idl, Idu, IduU, IdlU;
     detectarInternet di;
     int position = 0;
-    int prueba = 0;
+    int posicion = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +65,6 @@ public class MenuInicio extends AppCompatActivity {
             IduU = recibirparametros.getString("IduU");
             IdlU = recibirparametros.getString("IdlU");
 
-            mensajes(IdlU);
-            mensajes(IduU);
 
         }catch (Exception e){
             mensajes(e.getMessage());
@@ -129,6 +127,7 @@ public class MenuInicio extends AppCompatActivity {
             try {
                 if(jsonArrayDatosProductos.length()>0){
                     Idu = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value").getString("idUsu");
+
                     parametros.putString("Idu", Idu);
                     parametros.putString("IduU", IduU);
                     parametros.putString("IdlU", IdlU);
@@ -156,6 +155,7 @@ public class MenuInicio extends AppCompatActivity {
                     parametros.putString("IduU", IduU);
                     parametros.putString("IdlU", IdlU);
                     parametros.putString("Idl", Idl);
+                    parametros.putInt("posicion", position);
                     parametros.putString("datos", jsonArrayDatosProductos.getJSONObject(position).toString() );
                 }
 
@@ -308,6 +308,9 @@ public class MenuInicio extends AppCompatActivity {
     }
 
     private void mensajes(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+    }
+    private void mensajesInt(int msg){
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
     private void regresarmenu() {

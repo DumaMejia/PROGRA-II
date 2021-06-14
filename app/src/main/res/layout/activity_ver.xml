@@ -142,6 +142,18 @@
                 android:layout_margin="15dp"
                 android:hint="Ubicacion" />
 
+            <Button
+                android:id="@+id/btncomprar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Musuario"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp"
+                android:text="Comprar"
+                app:backgroundTint="#FF5722" />
+
 
         </LinearLayout>
     </ScrollView>
@@ -150,10 +162,14 @@
         android:id="@+id/btnregresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="25dp"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="right"
-        android:src="@drawable/abc_vector_test" />
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/abc_vector_test"
+        app:backgroundTint="#FF5722" />
 
 </RelativeLayout>

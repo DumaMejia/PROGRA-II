@@ -44,5 +44,27 @@
         android:layout_marginRight="15dp"
         android:text="Productos del usuario"
         app:backgroundTint="#FF5722" />
+    <Button
+        android:id="@+id/Musuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnProductosUsuario"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:text="Modificar Datos del usuario"
+        app:backgroundTint="#FF5722" />
+    <Button
+        android:id="@+id/cerrarsesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Musuario"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:text="Modificar Datos del usuario"
+        app:backgroundTint="#FF5722" />
 
 </RelativeLayout>
