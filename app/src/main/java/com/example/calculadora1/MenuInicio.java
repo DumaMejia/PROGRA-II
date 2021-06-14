@@ -151,8 +151,8 @@ public class MenuInicio extends AppCompatActivity {
                 jsonObjectDatosProductos.put("urlfoto", datosproductoscursor.getString(7));
                 jsonValueObject.put("value", jsonObjectDatosProductos);
                 jsonArrayDatosProductos.put(jsonValueObject);
+                Idl = datosproductoscursor.getString(2);
                 if(jsonArrayDatosProductos.length()>0){
-                    Idl = jsonArrayDatosProductos.getJSONObject(position).getJSONObject("value").getString("idl");
                     parametros.putString("IduU", IduU);
                     parametros.putString("IdlU", IdlU);
                     parametros.putString("Idl", Idl);
@@ -285,7 +285,7 @@ public class MenuInicio extends AppCompatActivity {
                 do{
                     misProductos = new Productos(
                             datosproductoscursor.getString(0),//
-                            datosproductoscursor.getString(1),//
+                            datosproductoscursor.getString(0),//
                             datosproductoscursor.getString(1),//
                             datosproductoscursor.getString(2),//
                             datosproductoscursor.getString(3),//

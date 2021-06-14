@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         if (datosusuariocursor.getString(5).equals(usuario)){
                             if (datosusuariocursor.getString(6).equals(contra)){
                                 a++;
-                                idU = datosusuariocursor.getString(0);
+                                idl = datosusuariocursor.getString(0);
                             }
                         }
                     }while (datosusuariocursor.moveToNext());
@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } while (datosusuariocursor.moveToNext());
                 }
+            }else{
+                idU="0";
             }
 
             mensajes("bienvenido");

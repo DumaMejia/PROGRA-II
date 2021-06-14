@@ -59,6 +59,7 @@ public class AgregarUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_usuario);
 
+
         di = new detectarInternet(getApplicationContext());
 
         miconexion = new DB(getApplicationContext(), "", null, 1);
@@ -147,56 +148,43 @@ public class AgregarUsuario extends AppCompatActivity {
 
             }
 
-
             if (a > 0) {
 
                 mensajes("ESE CORREO YA ESTA EN USO");
-                temp = findViewById(R.id.txtnombres);
-                temp.setText("");
-
-                temp = findViewById(R.id.txtapellidos);
-                temp.setText("");
-
-                temp = findViewById(R.id.txtdirecciongps);
-                temp.setText("");
-
-                temp = findViewById(R.id.txttelefono);
-                temp.setText("");
-
                 temp = findViewById(R.id.txtcorreo);
                 temp.setText("");
 
-                temp = findViewById(R.id.txtcontra);
-                temp.setText("");
-
-
             }
             if (a == 0) {
-                JSONObject datospelis = new JSONObject();
-                if (accion.equals("modificar") && idusuario.length() > 0 && rev.length() > 0) {
-                    datospelis.put("_id", idusuario);
-                    datospelis.put("_rev", rev);
+                if(direccion==""||nombres==""||apellidos==""||telefono==""||correo==""||contra==""){
+                    mensajes("por favor llene los campos");
+                }else {
+                    JSONObject datospelis = new JSONObject();
+                    if (accion.equals("modificar") && idusuario.length() > 0 && rev.length() > 0) {
+                        datospelis.put("_id", idusuario);
+                        datospelis.put("_rev", rev);
+                    }
+
+
+                    datospelis.put("nombres", nombres);
+                    datospelis.put("apellidos", apellidos);
+                    datospelis.put("direccion", direccion);
+                    datospelis.put("telefono", telefono);
+                    datospelis.put("usuario", correo);
+                    datospelis.put("contra", contra);
+
+                    String[] datos = {nombres, apellidos, direccion, telefono, correo, contra};
+
+                    di = new detectarInternet(getApplicationContext());
+                    if (di.hayConexionInternet()) {
+                        enviarDatosUsuarios guardarpelis = new enviarDatosUsuarios(getApplicationContext());
+                        String resp = guardarpelis.execute(datospelis.toString()).get();
+                    }
+
+                    miconexion.agregar_usuario(accion, datos);
+                    mensajes("Registro guardado con exito.");
+                    regresarmainactivity();
                 }
-
-
-                datospelis.put("nombres", nombres);
-                datospelis.put("apellidos", apellidos);
-                datospelis.put("direccion", direccion);
-                datospelis.put("telefono", telefono);
-                datospelis.put("usuario", correo);
-                datospelis.put("contra", contra);
-
-                String[] datos = {nombres, apellidos, direccion, telefono, correo, contra};
-
-                di = new detectarInternet(getApplicationContext());
-                if (di.hayConexionInternet()) {
-                    enviarDatosUsuarios guardarpelis = new enviarDatosUsuarios(getApplicationContext());
-                    String resp = guardarpelis.execute(datospelis.toString()).get();
-                }
-
-                miconexion.agregar_usuario(accion, datos);
-                mensajes("Registro guardado con exito.");
-                regresarmainactivity();
             }
 
         } catch (Exception w) {
@@ -207,11 +195,13 @@ public class AgregarUsuario extends AppCompatActivity {
     private void obtenerDatos() {
 
         try {
-
-            mensajes("Mostrando datos desde la nube");
-            obtenerDatosOnLine();
-            obtenerDatosOffLine();
-
+            if(di.hayConexionInternet()) {
+                mensajes("Esta en linea");
+                obtenerDatosOnLine();
+                obtenerDatosOffLine();
+            }else{
+                mensajes("Imposible conectar con los servidores, conectese a internet");
+            }
 
         } catch (Exception e) {
             mensajes(e.getMessage());

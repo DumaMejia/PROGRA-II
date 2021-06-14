@@ -41,7 +41,7 @@ public class DBP extends SQLiteOpenHelper {
                 sqLiteDatabaseW.execSQL("INSERT INTO tblproducto(idUsu, idl, nombre, descripcion, presentacion, precio, urlfoto) VALUES ('"+datos[1]+"','"+datos[2]+"','"+datos[3]+"','"+datos[4]+"','"+datos[5]+"','"+datos[6]+"','"+datos[7]+"')");
                 break;
             case "modificar":
-                sqLiteDatabaseW.execSQL("update tblproducto set IdUsu='"+datos[1]+"',idl='"+datos[2]+"',nombre='"+datos[2]+"',descripcion='"+datos[3]+"',presentacion='"+datos[4]+"',precio='"+datos[5]+"',urlfoto='"+datos[6]+"' where idprod='"+datos[0]+"'");
+                sqLiteDatabaseW.execSQL("update tblproducto set IdUsu='"+datos[1]+"',idl='"+datos[2]+"',nombre='"+datos[3]+"',descripcion='"+datos[4]+"',presentacion='"+datos[5]+"',precio='"+datos[6]+"',urlfoto='"+datos[7]+"' where idprod='"+datos[0]+"'");
                 break;
             case "eliminar":
                 sqLiteDatabaseW.execSQL("DELETE FROM tblproducto WHERE idprod='"+ datos[0]+"'");

@@ -50,6 +50,9 @@ public class adaptadorImagenes extends BaseAdapter {
             misProductos = datosprodArrayList.get(position);
             temp.setText(misProductos.getNombre());
 
+            temp = encuadre.findViewById(R.id.lbldescrip);
+            temp.setText(misProductos.getDescripcion());
+
             temp = encuadre.findViewById(R.id.lblprecio);
             temp.setText("$"+misProductos.getPrecio());
 

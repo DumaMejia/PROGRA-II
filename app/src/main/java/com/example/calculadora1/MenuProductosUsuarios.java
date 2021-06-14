@@ -264,30 +264,9 @@ public class MenuProductosUsuarios extends AppCompatActivity {
         try {
             ConexionServer conexionServer = new ConexionServer();
             String resp = conexionServer.execute(u.urlServerP, "GET").get();
-            jsonobj=new JSONObject(resp);
-            jsonarraycopy = jsonobj.getJSONArray("rows");
+            jsonObjectDatosProductos=new JSONObject(resp);
+            jsonArrayDatosProductos = jsonObjectDatosProductos.getJSONArray("rows");
 
-            JSONObject jsonObject;
-
-            for (int i = 0; i < jsonarraycopy.length(); i++) {
-                jsonObject = jsonarraycopy.getJSONObject(i).getJSONObject("value");
-
-                if (jsonObject.getString("_id").equals(Idu)){
-
-                    jsonObjectDatosProductos.put("_id", jsonObject.getString("_id"));
-                    jsonObjectDatosProductos.put("_rev", jsonObject.getString("_rev"));
-                    jsonObjectDatosProductos.put("idUsu", jsonObject.getString("idUsu"));
-                    jsonObjectDatosProductos.put("idl", jsonObject.getString("idl"));
-                    jsonObjectDatosProductos.put("nombre", jsonObject.getString("nombre"));
-                    jsonObjectDatosProductos.put("descripcion", jsonObject.getString("descripcion"));
-                    jsonObjectDatosProductos.put("presentacion", jsonObject.getString("presentacion"));
-                    jsonObjectDatosProductos.put("precio", jsonObject.getString("precio"));
-                    jsonObjectDatosProductos.put("urlfoto", jsonObject.getString("urlfoto"));
-                    jsonValueObject.put("value", jsonObjectDatosProductos);
-                    jsonArrayDatosProductos.put(jsonValueObject);
-                }
-
-            }
             mostrarDatos();
         }catch (Exception ex){
             mensajes(ex.getMessage());
@@ -332,11 +311,10 @@ public class MenuProductosUsuarios extends AppCompatActivity {
                 }
             } else {
                 do{
-                    if (datosproductoscursor.getString(0).equals(Idl)){
-
+                    if (datosproductoscursor.getString(2).equals(Idl)){
                         misProductos = new Productos(
                                 datosproductoscursor.getString(0),//
-                                datosproductoscursor.getString(1),//
+                                datosproductoscursor.getString(0),//
                                 datosproductoscursor.getString(1),//
                                 datosproductoscursor.getString(2),//
                                 datosproductoscursor.getString(3),//
