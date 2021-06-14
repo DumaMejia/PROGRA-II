@@ -7,11 +7,26 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:id="@+id/imgemer"
+        android:layout_width="202dp"
+        android:layout_height="73dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="106dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginRight="15dp"
+        app:srcCompat="@drawable/emercloud" />
+
     <EditText
         android:id="@+id/txtuss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_below="@+id/imgemer"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -34,10 +49,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtcontra"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
-        android:text="Iniciar" />
+        android:background="#FF5722"
+        android:text="Iniciar"
+        app:backgroundTint="#FF5722" />
 
     <Button
         android:id="@+id/btnregistrar"
@@ -45,8 +62,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btniniciar"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
-        android:text="Registro" />
+        android:text="Registro"
+        app:backgroundTint="#FF5722" />
+
+    <TextView
+        android:id="@+id/txtdesc"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnregistrar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="81dp"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="15dp"
+        android:hint="Created by Duma Zelaya"
+        android:textColor="@color/black" />
 </RelativeLayout>

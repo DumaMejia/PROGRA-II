@@ -6,15 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <ImageView
+        android:id="@+id/imgemer"
+        android:layout_width="202dp"
+        android:layout_height="73dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="106dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginRight="15dp"
+        app:srcCompat="@drawable/emercloud" />
+
     <Button
         android:id="@+id/btnBuscarProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/imgemer"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
-        android:text="Buscar producto" />
+        android:text="Buscar producto"
+        app:backgroundTint="#FF5722" />
 
     <Button
         android:id="@+id/btnProductosUsuario"
@@ -22,9 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnBuscarProducto"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
-        android:text="Productos del usuario" />
+        android:text="Productos del usuario"
+        app:backgroundTint="#FF5722" />
 
 </RelativeLayout>

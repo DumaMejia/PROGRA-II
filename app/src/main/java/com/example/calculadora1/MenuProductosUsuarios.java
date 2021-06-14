@@ -295,6 +295,7 @@ public class MenuProductosUsuarios extends AppCompatActivity {
                 if(jsonArrayDatosProductos.length()>0) {
                     for (int i = 0; i < jsonArrayDatosProductos.length(); i++) {
                         jsonObject = jsonArrayDatosProductos.getJSONObject(i).getJSONObject("value");
+                        if (jsonObject.getString("idl").equals(Idl)) {
                             misProductos = new Productos(
                                     jsonObject.getString("_id"),
                                     jsonObject.getString("_rev"),
@@ -307,6 +308,7 @@ public class MenuProductosUsuarios extends AppCompatActivity {
                                     jsonObject.getString("urlfoto")
                             );
                             productosArrayList.add(misProductos);
+                        }
                     }
                 }
             } else {
